@@ -1,0 +1,108 @@
+.sider_bar {
+}
+.sider_bar_header {
+}
+.sider_bar_profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  & img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+  }
+  & div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.sider_bar_content {
+}
+.item_modal_item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.item_modal_item.active {
+  background-color: beige;
+}
+
+// ============================================
+// SIDEBAR MODERN STYLE (Màu cam, hiện đại)
+// ============================================
+.sidebar-modern {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      border: 1px solid #f1f5f9;
+      padding: 1.5rem;
+      margin-bottom: 0;
+
+      &__header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 2px solid #fef3e2;
+      }
+
+      &__title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0;
+            letter-spacing: -0.02em;
+      }
+
+      &__content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+      }
+
+      &__item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 1.4rem;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #475569;
+            font-size: 1.5rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+
+            &:hover {
+                  background-color: #fef3e2;
+                  color: #f97316;
+                  transform: translateX(3px);
+            }
+
+            &.active {
+                  background-color: #f97316;
+                  color: #ffffff;
+                  border-color: #f97316;
+                  box-shadow: 0 3px 10px rgba(249, 115, 22, 0.25);
+
+                  .sidebar-modern__icon {
+                        color: #ffffff;
+                  }
+            }
+      }
+
+      &__icon {
+            font-size: 1.8rem;
+            color: inherit;
+            transition: color 0.2s ease;
+      }
+
+      &__text {
+            flex: 1;
+      }
+}

@@ -1,0 +1,101 @@
+@import "../../styles/abstracts/";
+
+.account-page {
+      padding: 6.4rem 0;
+      padding-top: 0;
+      &__wrapper{
+            display: flex;
+            gap:4rem;
+      }
+      &__top {
+
+            //margin: 0 auto;
+            max-width: 90rem;
+
+            @include breakpoint(sm) {
+                  margin-top: 8rem;
+            }
+
+
+            &>hr {
+                  opacity: 0.3;
+                  border-color: $grey-500;
+                  margin-top: 4rem;
+
+                  &:last-child {
+                        margin: 0;
+                  }
+            }
+
+      }
+
+      &__header {
+            max-width: 67rem;
+
+            &>h2 {
+                  @include text(3rem, 600, $black, 3.6rem);
+
+                  @include breakpoint(xl) {
+                        @include text(3.6rem, 600, $black, 4rem);
+                  }
+            }
+
+            &>span {
+                  display: block;
+                  margin-top: 1.6rem;
+                  @include text(1.6rem, 400, $grey-600, 2.4rem);
+
+                  @include breakpoint(md) {
+                        @include text(1.8rem, 400, $grey-600, 2.8rem);
+                  }
+
+                  b {
+                        color: $black;
+                  }
+            }
+      }
+
+      &__content {
+            //max-width: 90rem;
+            //margin: 0 auto;
+            flex:1;
+
+            @include breakpoint(lg) {
+                  padding-bottom: 12.8rem;
+            }
+
+            padding: 5.6rem 0 9.6rem;
+      }
+}
+
+// ============================================
+// ACCOUNT PAGE MODERN STYLE (Màu cam, hiện đại)
+// ============================================
+.account-page-modern {
+      padding: 6rem 0 2rem;
+      min-height: calc(100vh - 7rem);
+      background: linear-gradient(180deg, #ffffff 0%, #fef3e2 50%, #ffffff 100%);
+
+      &__wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+
+            @include breakpoint(lg) {
+                  grid-template-columns: 240px 1fr;
+                  gap: 2rem;
+            }
+      }
+
+      &__sidebar {
+            width: 100%;
+      }
+
+      &__content {
+            width: 100%;
+            padding: 0;
+            min-height: auto;
+      }
+}

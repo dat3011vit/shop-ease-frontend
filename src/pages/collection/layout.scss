@@ -1,0 +1,90 @@
+@import "../../styles/abstracts/";
+
+// LAYOUT - Standalone CSS outside Container scope
+// This ensures the layout works correctly regardless of Container CSS
+.search-page-modern__main {
+    position: relative !important;
+    z-index: 1 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 2rem !important;
+    padding-bottom: 6rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+
+    @include breakpoint(lg) {
+        gap: 1.5rem !important;
+    }
+
+    @include breakpoint(sm) {
+        flex-direction: column !important;
+        gap: 2rem !important;
+    }
+}
+
+.search-page-modern__sidebar {
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+    width: 18rem !important;
+    min-width: 18rem !important;
+    max-width: 18rem !important;
+    position: sticky !important;
+    top: 10rem !important;
+    height: fit-content !important;
+    max-height: calc(100vh - 12rem) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    z-index: 10 !important;
+    order: 1 !important;
+    box-sizing: border-box !important;
+
+    @include breakpoint(lg) {
+        width: 16rem !important;
+        min-width: 16rem !important;
+        max-width: 16rem !important;
+    }
+
+    @include breakpoint(sm) {
+        position: relative !important;
+        top: 0 !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        max-height: none !important;
+        order: 1 !important;
+    }
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba($gold-300, 0.5);
+        border-radius: 2px;
+
+        &:hover {
+            background: rgba($gold-400, 0.7);
+        }
+    }
+}
+
+.search-page-modern__content {
+    position: relative !important;
+    flex: 1 1 auto !important;
+    flex-grow: 1 !important;
+    flex-shrink: 1 !important;
+    min-width: 0 !important;
+    order: 2 !important;
+    width: auto !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+

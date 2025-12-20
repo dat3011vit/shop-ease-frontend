@@ -1,0 +1,265 @@
+@import "../../styles/abstracts/";
+
+.search-page-modern {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    position: relative;
+    overflow: hidden;
+    padding-top: 8rem;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 20% 50%, rgba($gold-300, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba($gold-200, 0.2) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    &__hero {
+        position: relative;
+        padding: 4rem 0 3rem;
+        margin-bottom: 4rem;
+        overflow: hidden;
+
+        &-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba($gold-500, 0.1) 0%,
+                rgba($gold-400, 0.05) 50%,
+                rgba($gold-300, 0.1) 100%
+            );
+            z-index: 0;
+        }
+
+        &-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem 0;
+        }
+    }
+
+    &__search-icon {
+        font-size: 6rem;
+        color: $gold-600;
+        margin-bottom: 1.6rem;
+        animation: float 3s ease-in-out infinite;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            width: 6rem !important;
+            height: 6rem !important;
+            max-width: 6rem !important;
+            max-height: 6rem !important;
+            display: inline-block !important;
+        }
+    }
+
+    &__title {
+        font-size: 3.6rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, $gold-700 0%, $gold-600 50%, $gold-500 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0 0 1rem;
+        letter-spacing: -1px;
+
+        @include breakpoint(md) {
+            font-size: 2.8rem;
+        }
+
+        @include breakpoint(sm) {
+            font-size: 2.2rem;
+        }
+    }
+
+    &__subtitle {
+        font-size: 1.8rem;
+        color: $grey-650;
+        font-weight: 400;
+        margin: 0;
+
+        @include breakpoint(sm) {
+            font-size: 1.6rem;
+        }
+    }
+
+
+    &__content {
+        position: relative;
+        width: 100%;
+        padding-bottom: 6rem;
+    }
+
+    &__filters {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 1.4rem;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        border: 1px solid rgba($gold-200, 0.3);
+        margin-bottom: 2rem;
+    }
+
+    &__filters-title {
+        @include flex(null, center, null, 0.6rem);
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: $gold-700;
+        margin: 0 0 1.2rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid rgba($gold-200, 0.4);
+
+        svg {
+            color: $gold-600;
+            font-size: 1.5rem;
+        }
+    }
+
+    &__filters-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &__reset-btn {
+        margin-top: 0.4rem;
+        width: 100%;
+        background: $gold-600;
+        color: white;
+        border: none;
+        padding: 0.8rem 1.2rem;
+        border-radius: 8px;
+        font-size: 1.3rem;
+        font-weight: 500;
+        @include flex(center, center, null, 0.5rem);
+        transition: all 0.2s ease;
+        cursor: pointer;
+
+        &:hover {
+            background: $gold-700;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(249, 115, 22, 0.25);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+
+    &__stats {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 3rem;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba($gold-200, 0.5);
+        flex-wrap: wrap;
+
+        @include breakpoint(sm) {
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+
+    &__stats-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-size: 1.4rem;
+        color: $grey-700;
+        font-weight: 500;
+
+        svg {
+            width: 20px;
+            height: 20px;
+            color: $gold-600;
+        }
+    }
+
+    &__pagination {
+        margin-top: 6rem;
+        display: flex;
+        justify-content: center;
+        padding: 3rem 0;
+    }
+
+    &__loading {
+        padding: 4rem 0;
+    }
+
+    &__empty {
+        text-align: center;
+        padding: 8rem 2rem;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: 24px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba($gold-200, 0.3);
+    }
+
+    &__empty-icon {
+        font-size: 8rem;
+        color: $grey-500;
+        margin-bottom: 2rem;
+        animation: bounce 2s ease-in-out infinite;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__empty-title {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: $grey-700;
+        margin: 0 0 1rem;
+    }
+
+    &__empty-text {
+        font-size: 1.6rem;
+        color: $grey-650;
+        margin: 0;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+// Legacy collection-page (keep for backward compatibility)
+.collection-page {
+    @extend .search-page-modern;
+}

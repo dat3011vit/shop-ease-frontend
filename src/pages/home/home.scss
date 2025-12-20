@@ -1,0 +1,136 @@
+@import "../../styles/abstracts/";
+
+.home-page-modern {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    padding-top: 8rem;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 20% 30%, rgba($gold-300, 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba($gold-200, 0.15) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    &__content {
+        position: relative;
+        z-index: 1;
+        padding: 4rem 0 6rem;
+    }
+
+    &__header {
+        text-align: center;
+        margin-bottom: 4rem;
+        padding: 3rem 0;
+    }
+
+    &__title {
+        @include flex(center, center, null, 1.2rem);
+        font-size: 4rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, $gold-700 0%, $gold-600 50%, $gold-500 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0 0 1.6rem;
+        letter-spacing: -1px;
+
+        @include breakpoint(md) {
+            font-size: 3.2rem;
+        }
+
+        @include breakpoint(sm) {
+            font-size: 2.4rem;
+        }
+    }
+
+    &__title-icon {
+        font-size: 4.8rem;
+        color: $gold-600;
+        animation: float 3s ease-in-out infinite;
+
+        @include breakpoint(md) {
+            font-size: 3.6rem;
+        }
+    }
+
+    &__subtitle {
+        font-size: 1.8rem;
+        color: $grey-650;
+        font-weight: 400;
+        margin: 0;
+
+        @include breakpoint(sm) {
+            font-size: 1.6rem;
+        }
+    }
+
+    &__pagination {
+        margin-top: 6rem;
+        display: flex;
+        justify-content: center;
+        padding: 3rem 0;
+    }
+
+    &__empty {
+        text-align: center;
+        padding: 8rem 2rem;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: 24px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba($gold-200, 0.3);
+    }
+
+    &__empty-icon {
+        font-size: 8rem;
+        color: $grey-500;
+        margin-bottom: 2rem;
+        animation: bounce 2s ease-in-out infinite;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__empty-title {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: $grey-700;
+        margin: 0 0 1rem;
+    }
+
+    &__empty-text {
+        font-size: 1.6rem;
+        color: $grey-650;
+        margin: 0;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}

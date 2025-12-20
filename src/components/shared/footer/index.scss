@@ -1,0 +1,230 @@
+@import "../../../styles/abstracts/";
+
+footer {
+      padding: 11.2rem 0 9.6rem;
+      margin-right: auto;
+      margin-left: auto;
+      @include text(2.4rem, 400, $grey-800);
+      border-top: 0.2rem solid $grey-450;
+
+      .footer {
+            text-align: center;
+            @include grid(repeat(1, minmax(0, 1fr)), null, 4rem);
+
+            @include breakpoint(sm) {
+                  grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            @include breakpoint(md) {
+                  grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+
+            @include breakpoint(lg) {
+                  grid-template-columns: repeat(5, minmax(0, 1fr));
+            }
+
+            &__list {
+
+                  &--logo {
+
+                        .logo a {
+                              @include box(100%, 4rem);
+                              @include flex(start);
+                              margin-bottom: 1rem;
+
+                              img {
+                                    @include box(100%, 100%);
+                              }
+                        }
+                  }
+
+                  &_link {
+
+                        margin-top: 0;
+                        @include flex(center, center, column, 1rem);
+
+                        a {
+                              margin-top: 1rem;
+                              font-size: 2rem;
+                              @include flex(null, center, null, 1rem);
+                        }
+
+                        span {
+
+                              display: block;
+                              @include text(1.4rem, 400, $grey-800);
+
+                              &:hover {
+                                    color: $black;
+                                    scale: 1.1;
+                                    transition: 0.2s ease-in;
+                              }
+                        }
+                  }
+
+                  h2 {
+                        @include text(1.4rem, 600, $grey-800);
+                  }
+
+                  ul {
+                        margin-top: 2rem;
+
+                        li {
+                              margin-top: 1rem;
+                              cursor: pointer;
+                              @include text(1.4rem, 400, $grey-800);
+
+                              &:hover {
+                                    color: $black;
+                                    scale: 1.1;
+                                    transition: 0.2s ease-in;
+                              }
+                        }
+                  }
+            }
+      }
+}
+
+// ============================================
+// FOOTER MODERN STYLE (Màu cam, hiện đại)
+// ============================================
+.footer-modern {
+      background: linear-gradient(180deg, #ffffff 0%, #fef3e2 100%);
+      border-top: 3px solid #f97316;
+      padding: 6rem 0 2rem;
+      margin-top: 8rem;
+
+      &__content {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 3rem;
+            text-align: center;
+
+            @include breakpoint(sm) {
+                  grid-template-columns: repeat(2, minmax(0, 1fr));
+                  text-align: left;
+            }
+
+            @include breakpoint(md) {
+                  grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            @include breakpoint(lg) {
+                  grid-template-columns: repeat(5, minmax(0, 1fr));
+            }
+      }
+
+      &__section {
+            &--social {
+                  @include breakpoint(lg) {
+                        grid-column: span 1;
+                  }
+            }
+      }
+
+      &__title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+      }
+
+      &__list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+
+            li {
+                  a {
+                        font-size: 1.5rem;
+                        font-weight: 400;
+                        color: #475569;
+                        text-decoration: none;
+                        transition: all 0.2s ease;
+                        display: inline-block;
+
+                        &:hover {
+                              color: #f97316;
+                              transform: translateX(4px);
+                        }
+                  }
+            }
+      }
+
+      &__logo {
+            margin-bottom: 1.5rem;
+            display: inline-block;
+
+            a {
+                  display: inline-block;
+                  transition: transform 0.2s ease;
+
+                  &:hover {
+                        transform: scale(1.05);
+                  }
+
+                  img {
+                        max-width: 12rem;
+                        height: auto;
+                        width: auto;
+                        object-fit: contain;
+                  }
+            }
+      }
+
+      &__description {
+            font-size: 1.4rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+      }
+
+      &__social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+
+            @include breakpoint(sm) {
+                  justify-content: flex-start;
+            }
+      }
+
+      &__social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 4.4rem;
+            height: 4.4rem;
+            border-radius: 50%;
+            background-color: #ffffff;
+            color: #475569;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+            &:hover {
+                  background-color: #f97316;
+                  color: #ffffff;
+                  transform: translateY(-4px);
+                  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+            }
+      }
+
+      &__bottom {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+      }
+
+      &__copyright {
+            font-size: 1.4rem;
+            color: #64748b;
+            margin: 0;
+      }
+}

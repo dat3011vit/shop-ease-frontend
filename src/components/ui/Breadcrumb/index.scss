@@ -1,0 +1,52 @@
+@import "../../../styles/abstracts/";
+
+.breadcrumb {
+      &__container {
+            display: flex;
+            padding:0.75rem 1.25rem ;
+            border: 1px solid #e2e8f0; 
+            border-radius: 0.5rem; 
+            background-color: $gray-50; 
+
+            &--crumb{
+                  display: flex;
+                  align-items: center;
+
+                  &-link{
+                        display: flex;
+                        align-items: center;
+                        @include text(1.6rem, 200, $gray-700, 3.2rem);
+
+                        @include breakpoint(lg) {
+                              @include text(2rem, 200, $gray-700, 4rem);
+                        }
+                  }
+                  &-span{
+                        display: flex;
+                        align-items: center;
+                        @include text(1.6rem, 200, $gray-500, 3.2rem);
+
+                        @include breakpoint(lg) {
+                              @include text(2rem, 200, $gray-500, 4rem);
+                        }
+                  }
+            }
+      }
+
+      h2 {
+            @include flex(null, center, null, 0.4rem);
+            text-transform: capitalize;
+
+            &>span,
+            a {
+                  @include text(1.8rem, 600, $black, 3.2rem);
+
+                  @include breakpoint(lg) {
+                        @include text(2.4rem, 600, $black, 4rem);
+                  }
+            }
+            a:hover{
+                  text-decoration: underline;
+            }
+      }
+}

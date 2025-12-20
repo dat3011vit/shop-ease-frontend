@@ -1,0 +1,140 @@
+@import "../../../styles/abstracts/";
+
+.filter-range {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba($gold-200, 0.2);
+      @include flex(null, start, column, null);
+
+      &:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+      }
+
+      h3 {
+            @include text(1.3rem, 600, $gold-700, 1.6rem);
+            margin-bottom: 0.8rem;
+            color: $gold-700;
+      }
+
+      &__slider {
+            width: 100%;
+            margin: 1rem 0;
+
+            // Style cho rc-slider
+            .rc-slider {
+                  &-rail {
+                        background-color: rgba($gold-200, 0.4);
+                        height: 4px;
+                        border-radius: 2px;
+                  }
+
+                  &-track {
+                        background: $gold-600;
+                        height: 4px;
+                        border-radius: 2px;
+                  }
+
+                  &-handle {
+                        width: 16px;
+                        height: 16px;
+                        margin-top: -6px;
+                        background: #ffffff;
+                        border: 2px solid $gold-600;
+                        box-shadow: 0 1px 3px rgba(249, 115, 22, 0.3);
+                        transition: all 0.15s ease;
+
+                        &:hover, &:active {
+                              border-color: $gold-700;
+                              box-shadow: 0 2px 6px rgba(249, 115, 22, 0.4);
+                              transform: scale(1.05);
+                        }
+                  }
+
+                  &-dot {
+                        border-color: rgba($gold-300, 0.4);
+
+                        &-active {
+                              border-color: $gold-600;
+                        }
+                  }
+            }
+
+            input[type=range] {
+                  -webkit-appearance: none;
+                  appearance: none;
+                  background-color: rgba($gold-200, 0.4);
+                  border-radius: 2px;
+                  @include box(100%, 4px);
+                  margin: 1rem 0;
+                  padding: 0;
+
+                  &:focus {
+                        outline: none;
+                  }
+            }
+
+            input[type=range]::-webkit-slider-thumb {
+                  -webkit-appearance: none;
+                  appearance: none;
+                  background-color: $white;
+                  border-radius: 99999px;
+                  border: 0.2rem solid $gold-600;
+                  @include box(1.6rem, 1.6rem);
+                  cursor: pointer;
+                  box-shadow: 0 2px 4px rgba(249, 115, 22, 0.2);
+                  transition: all 0.2s ease;
+
+                  &:hover {
+                        border-color: $gold-700;
+                        box-shadow: 0 2px 6px rgba(249, 115, 22, 0.3);
+                  }
+            }
+      }
+
+      &__info {
+            @include flex(space-between, center, null, 1rem);
+            margin-top: 1rem;
+      }
+
+      &__item {
+            flex: 1;
+
+            &>label {
+                  @include text(1.2rem, 500, $grey-700, 1.6rem);
+                  display: block;
+                  margin-bottom: 0.4rem;
+            }
+      }
+
+      &__value {
+            margin-top: 0;
+            border-radius: 6px;
+            border: 1px solid rgba($gold-300, 0.4);
+            position: relative;
+            background: #ffffff;
+            transition: all 0.15s ease;
+
+            &:focus-within {
+                  border-color: $gold-600;
+                  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.08);
+            }
+
+            svg {
+                  @include position(absolute, 50%, 0.8rem, 0, null);
+                  transform: translateY(-50%);
+                  color: $gold-600;
+                  font-size: 1.3rem;
+            }
+
+            input {
+                  padding: 0.6rem 0.8rem 0.6rem 2.8rem;
+                  border: none;
+                  outline: none;
+                  width: 100%;
+                  font-size: 1.2rem;
+                  color: $black;
+                  background: transparent;
+            }
+      }
+}
+

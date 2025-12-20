@@ -1,0 +1,28 @@
+@import "../../../styles/abstracts/";
+
+.product-list {
+      column-gap: 2rem;
+      row-gap: 2.5rem;
+      display: grid;
+
+      @include breakpoint(md) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      @include breakpoint(xl) {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+}
+.product-list--home {
+      column-gap: 2rem;
+      row-gap: 2.5rem;
+      display: grid;
+
+      @include breakpoint(md) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      @include breakpoint(xl) {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+}

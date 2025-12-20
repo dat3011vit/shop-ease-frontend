@@ -1,0 +1,324 @@
+@import "../../../styles/abstracts/";
+
+.account-info {
+      display: flex;
+      &>h2 {
+            @include text(2.4rem, 600, $black, 3.2rem);
+
+            @include breakpoint(sm) {
+                  @include text(3rem, 600, $black, 3.6rem);
+            }
+      }
+}
+
+.edit_acc {
+      padding-right: 20px;
+      flex:1;
+      & .edit_acc_heading {
+            font-size: 21px;
+            margin-bottom: 20px;
+      }
+}
+.edit_avt{
+      //position: relative;
+}
+.edit_acc_form {
+      display: flex;
+      flex-direction: column;
+}
+.edit_acc_group {
+      display: flex;
+      // flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+      & label {
+            margin: 0;
+            width: 120px;
+      }
+      & .small {
+            cursor: pointer;
+            color: blue;
+            font-size: 12px;
+            margin-top: 4px;
+      }
+}
+.input_div {
+      flex: 1;
+      & input {
+            width: 100%;
+            font-size: 18px;
+            padding: 8px 16px;
+      }
+      display: flex;
+      flex-direction: column;
+}
+
+.edit_acc_btn {
+      border: 1px solid #ccc;
+      padding: 12px 20px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #fff;
+      background-color: rgb(75, 75, 250);
+      transition: all 0.25s linear;
+      &:hover {
+            transform: scale(0.98);
+      }
+}
+label.edit_avt_file {
+      display: block;
+      position: relative;
+      padding: 4rem;
+      border-radius: 50%;
+}
+
+.FaCamera {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0.4;
+      &:hover {
+            opacity: 0.7;
+      }
+}
+
+// ============================================
+// ACCOUNT FORM MODERN STYLE (Chuẩn UX/UI)
+// ============================================
+.account-form-modern {
+      padding: 1.5rem 0;
+      max-width: 600px;
+      margin: 0 auto;
+
+      &__header {
+            text-align: left;
+            margin-bottom: 1.5rem;
+      }
+
+      &__title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+      }
+
+      &__subtitle {
+            font-size: 1.4rem;
+            color: #64748b;
+            margin: 0;
+            line-height: 1.5;
+      }
+
+      &__card {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f1f5f9;
+      }
+
+      &__form {
+            .ant-form-item {
+                  margin-bottom: 1.4rem;
+            }
+      }
+
+      &__submit-btn {
+            transition: all 0.3s ease;
+
+            &:hover {
+                  background-color: #ea580c !important;
+                  border-color: #ea580c !important;
+                  transform: translateY(-2px);
+                  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
+            }
+      }
+}
+
+// ============================================
+// ACCOUNT INFO MODERN STYLE (Màu cam, hiện đại)
+// ============================================
+.account-info-modern {
+      padding: 1.5rem 0;
+      max-width: 1000px;
+      margin: 0 auto;
+
+      &__header {
+            text-align: left;
+            margin-bottom: 1.5rem;
+      }
+
+      &__title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+      }
+
+      &__subtitle {
+            font-size: 1.4rem;
+            color: #64748b;
+            margin: 0;
+            line-height: 1.5;
+      }
+
+      &__content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+
+            @include breakpoint(lg) {
+                  grid-template-columns: 1.8fr 1fr;
+                  gap: 2rem;
+            }
+      }
+
+      &__form-section {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f1f5f9;
+      }
+
+      &__form {
+            .ant-form-item {
+                  margin-bottom: 1.4rem;
+            }
+      }
+
+      &__avatar-section {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+
+            @include breakpoint(lg) {
+                  justify-content: flex-start;
+            }
+      }
+
+      &__avatar-card {
+            background: #ffffff;
+            padding: 1.8rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f1f5f9;
+            width: 100%;
+            max-width: 240px;
+            text-align: center;
+      }
+
+      &__avatar-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+      }
+
+      &__avatar-upload {
+            position: relative;
+            width: 14rem;
+            height: 14rem;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid #fef3e2;
+            transition: all 0.3s ease;
+
+            &:hover {
+                  border-color: #f97316;
+                  transform: scale(1.02);
+
+                  .account-info-modern__avatar-overlay {
+                        opacity: 1;
+                  }
+            }
+      }
+
+      &__avatar-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+      }
+
+      &__avatar-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #fef3e2 0%, #fed7aa 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f97316;
+      }
+
+      &__avatar-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(249, 115, 22, 0.85);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            gap: 0.6rem;
+
+            span {
+                  font-size: 1.3rem;
+                  font-weight: 500;
+            }
+      }
+
+      &__submit-btn {
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+
+            &:hover {
+                  background-color: #ea580c !important;
+                  border-color: #ea580c !important;
+                  transform: translateY(-2px);
+                  box-shadow: 0 6px 12px rgba(249, 115, 22, 0.25);
+            }
+      }
+}
+
+.form-label-modern {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #0f172a;
+      display: block;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+}
+
+.form-input-modern {
+      border-radius: 10px;
+      border: 2px solid #e2e8f0;
+      transition: all 0.3s ease;
+      height: 44px !important;
+
+      &:hover {
+            border-color: #f97316;
+      }
+
+      &:focus {
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+      }
+
+      &.ant-input-disabled {
+            background-color: #f8f9fa;
+            color: #64748b;
+            cursor: not-allowed;
+      }
+}

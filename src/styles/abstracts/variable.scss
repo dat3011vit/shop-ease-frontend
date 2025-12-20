@@ -1,0 +1,98 @@
+//font
+$roboto-font: "Roboto", sans-serif;
+//colors:
+$black: #292429;
+$black-300: rgb(30, 41, 59);
+$black-100: #3d5d7d;
+
+$white: #ffff;
+$pink: #fce7f3;
+$browen: #b84f59;
+$red: #ef4747;
+
+$grey-800: #39415a;
+$grey-700: #57587f;
+$grey-650: #6b7280;
+$grey-600: #7b829e;
+$grey-550: #8692a5;
+$grey-500: #e5e7eb;
+$grey-450: #dee4ec;
+$grey-400: #faf5ff;
+$grey-300: #faf5ff;
+$grey-200: #fefbff;
+$grey-100: #faf5ff;
+
+// Purple Luxury - Primary Colors
+$purple-900: #581c87;
+$purple-800: #6d28d9;
+$purple-700: #7c3aed;
+$purple-650: #8b5cf6;
+$purple-600: #a78bfa;
+$purple-500: #c4b5fd;
+$purple-400: #ddd6fe;
+$purple-300: #ede9fe;
+$purple-200: #f3e8ff;
+$purple-100: #faf5ff;
+
+// Gold Luxury - Accent Colors
+$gold-700: #b45309;
+$gold-600: #d97706;
+$gold-500: #f59e0b;
+$gold-400: #fbbf24;
+$gold-300: #fcd34d;
+$gold-200: #fde68a;
+$gold-100: #fef3c7;
+
+// Legacy green (now using gold for success)
+$green-600: #f59e0b;
+$green-500: #fbbf24;
+$green-400: #fef3c7;
+
+// Legacy blue (now using purple)
+$blue-650: #8b5cf6;
+$blue-600: #a78bfa;
+$blue-500: #c4b5fd;
+
+// Legacy yellow (now using gold)
+$yellow-500: #fbbf24;
+$yellow-400: #d97706;
+$yellow-300: #fef9c3;
+$yellow-200: #fffbeb;
+$yellow-100: #fefce8;
+
+$orange-100:#fef3c7;
+
+$gray-700:#374151;
+$gray-500:#6b7280;
+$gray-50: #f9fafb;
+
+//
+$bg-icon-star-yellow: $gold-400;
+$bg-icon: $purple-800;
+
+//
+$cl-title: $purple-900;
+$cl-title-grey: $purple-700;
+
+//
+$btn-outline-green: $gold-500;
+$btn-primary: $purple-650;
+$btn-outline-primary: $purple-650;
+$btn-outline-grey: $purple-100;
+$title-accordin: rgba(250, 245, 255, 0.9);
+$cl-title-accordin: $purple-900;
+$bg-order-card: $purple-100;
+
+
+//
+$cl-price: $gold-500;
+$cl-price-original: #929292;
+$cl-price-discount: $gold-700;
+
+
+$hover_transition: opacity 0.3s linear,
+      visibility 0.3s linear,
+      color 0.15s linear,
+      border-color 0.15s linear,
+      background-color 0.15s linear,
+      box-shadow 0.15s linear;
