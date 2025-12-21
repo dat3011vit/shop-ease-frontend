@@ -1,0 +1,15 @@
+{
+  "required": "ฟิลด์นี้จำเป็นต้องกรอก",
+  "email": "อีเมลไม่ถูกต้อง",
+  "emailRequired": "กรุณากรอกอีเมล!",
+  "emailInvalid": "อีเมลไม่ถูกต้อง!",
+  "minLength": "ต้องมีอย่างน้อย {{count}} ตัวอักษร",
+  "maxLength": "ไม่เกิน {{count}} ตัวอักษร",
+  "passwordMismatch": "รหัสผ่านและยืนยันรหัสผ่านไม่ตรงกัน!",
+  "passwordNotMatch": "รหัสผ่านไม่ตรงกัน!",
+  "passwordMinLength": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร!",
+  "confirmPasswordRequired": "กรุณายืนยันรหัสผ่าน!",
+  "invalidFormat": "รูปแบบไม่ถูกต้อง",
+  "usernameRequired": "กรุณากรอกชื่อผู้ใช้!",
+  "passwordRequired": "กรุณากรอกรหัสผ่าน!"
+}

@@ -1,0 +1,17 @@
+{
+  "welcome": "Chào mừng",
+  "loading": "Đang tải...",
+  "error": "Đã có lỗi xảy ra",
+  "success": "Thành công",
+  "cancel": "Hủy",
+  "confirm": "Xác nhận",
+  "save": "Lưu",
+  "delete": "Xóa",
+  "edit": "Chỉnh sửa",
+  "search": "Tìm kiếm",
+  "filter": "Lọc",
+  "sort": "Sắp xếp",
+  "viewAll": "Xem tất cả",
+  "noData": "Không có dữ liệu",
+  "language": "Ngôn ngữ"
+}

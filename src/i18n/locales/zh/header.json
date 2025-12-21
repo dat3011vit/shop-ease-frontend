@@ -1,0 +1,22 @@
+{
+  "home": "首页",
+  "categories": "分类",
+  "seasons": "季节",
+  "orders": "订单",
+  "cart": "购物车",
+  "notifications": "通知",
+  "profile": "账户",
+  "searchPlaceholder": "搜索产品...",
+  "admin": {
+    "productManagement": "产品管理",
+    "productList": "产品列表",
+    "addProduct": "添加产品",
+    "productAttributes": "管理属性",
+    "userManagement": "用户管理",
+    "userListBanned": "被禁用户列表",
+    "userListActive": "活跃用户列表",
+    "orderManagement": "订单管理",
+    "invoiceManagement": "发票管理",
+    "statistics": "统计"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "contactInfo": "ข้อมูลติดต่อ",
+  "shippingAddress": "ที่อยู่จัดส่ง",
+  "paymentMethod": "วิธีการชำระเงิน",
+  "cashOnDelivery": "ชำระเงินปลายทาง",
+  "payWithVnpay": "ชำระผ่าน VNPay",
+  "confirmPaymentMethod": "ยืนยันวิธีการชำระเงิน",
+  "paymentMethodSuccess": "เลือกวิธีการชำระเงินสำเร็จ",
+  "paymentSuccess": "ชำระเงินสำเร็จ",
+  "orderDetails": "รายละเอียดคำสั่งซื้อ",
+  "orderInfo": "ข้อมูลคำสั่งซื้อ",
+  "value": "ค่า",
+  "totalPrice": "ราคารวม",
+  "paymentTime": "เวลาชำระเงิน",
+  "transactionId": "รหัสธุรกรรม",
+  "backToHome": "กลับหน้าหลัก",
+  "createOrder": "สร้างคำสั่งซื้อ",
+  "amount": "จำนวนเงิน",
+  "amountRequired": "กรุณากรอกจำนวนเงิน!",
+  "orderInfoRequired": "กรุณากรอกข้อมูลคำสั่งซื้อ!",
+  "pay": "ชำระเงิน"
+}

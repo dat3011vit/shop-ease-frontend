@@ -1,0 +1,22 @@
+{
+  "contactInfo": "THÔNG TIN LIÊN HỆ",
+  "shippingAddress": "ĐỊA CHỈ GIAO HÀNG",
+  "paymentMethod": "PHƯƠNG THỨC THANH TOÁN",
+  "cashOnDelivery": "Thanh toán khi nhận hàng",
+  "payWithVnpay": "Thanh toán qua VNPay",
+  "confirmPaymentMethod": "Xác nhận phương thức thanh toán",
+  "paymentMethodSuccess": "Đã chọn phương thức thanh toán thành công",
+  "paymentSuccess": "Thanh toán thành công",
+  "orderDetails": "Chi tiết đơn hàng",
+  "orderInfo": "Thông tin đơn hàng",
+  "value": "Giá trị",
+  "totalPrice": "Tổng tiền",
+  "paymentTime": "Thời gian thanh toán",
+  "transactionId": "Mã giao dịch",
+  "backToHome": "Về trang chủ",
+  "createOrder": "Tạo Đơn Hàng",
+  "amount": "Số tiền",
+  "amountRequired": "Vui lòng nhập số tiền!",
+  "orderInfoRequired": "Vui lòng nhập thông tin đơn hàng!",
+  "pay": "Thanh toán"
+}

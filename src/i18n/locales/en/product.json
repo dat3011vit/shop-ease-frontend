@@ -1,0 +1,15 @@
+{
+  "title": "Featured Products",
+  "subtitle": "Discover our latest fashion collection",
+  "noProducts": "No products found",
+  "tryAgain": "Please try again later",
+  "loading": "Loading products...",
+  "addToCart": "Add to Cart",
+  "viewDetails": "View Details",
+  "outOfStock": "Out of Stock",
+  "inStock": "In Stock",
+  "price": "Price",
+  "sale": "Sale",
+  "new": "New",
+  "browserNotSupported": "Your browser does not support video."
+}

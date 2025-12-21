@@ -1,0 +1,32 @@
+{
+  "getStarted": {
+    "title": "开始使用",
+    "home": "首页",
+    "login": "登录",
+    "register": "注册",
+    "cart": "购物车"
+  },
+  "explore": {
+    "title": "探索",
+    "products": "产品",
+    "categories": "分类",
+    "orders": "订单",
+    "wishlist": "收藏"
+  },
+  "support": {
+    "title": "支持",
+    "faq": "常见问题",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "contact": "联系我们"
+  },
+  "community": {
+    "title": "社区",
+    "news": "新闻",
+    "blog": "博客",
+    "careers": "招聘",
+    "about": "关于我们"
+  },
+  "description": "高品质的在线购物体验",
+  "copyright": "© 2025 ORANGE FASHION. 保留所有权利。"
+}

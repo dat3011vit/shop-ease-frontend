@@ -8,7 +8,7 @@ import Logo from '../../../assets/images/logo-orange.png';
 // import { RootState } from "../../../store";
 import useModal from '@/hooks/useModal';
 import { RootState } from '@/store';
-import { Container } from '../../shared';
+import { Container, LanguageSwitcher } from '../../shared';
 import { Button, Modal, Popup, Dropdown } from '../../ui';
 import './index.scss';
 import { HeaderMobile } from '@/components/shared/header/HeaderMobile.tsx';
@@ -20,8 +20,10 @@ import PopupNotification from './PopupNotification';
 import { ERole } from '@/common/models/User.ts';
 import {Input} from "antd";
 import {SearchOutlined} from "@ant-design/icons";
+import { useTranslation } from 'react-i18next';
 
 const HeaderComponent = () => {
+    const { t } = useTranslation('header');
     const [isSticky, setSticky] = useState(false);
     // const { totalQuantity, cart } = useSelector(
     //   (state: RootState) => state?.cart
@@ -129,9 +131,9 @@ const HeaderComponent = () => {
                                 </Link>
                             </div>
                             <div className="header-modern__navbar">
-                                <NavLink to={path.INDEX} className="nav-link-modern">Trang chủ</NavLink>
+                                <NavLink to={path.INDEX} className="nav-link-modern">{t('home')}</NavLink>
                                 <span className="nav-link-modern">
-                                    Danh mục
+                                    {t('categories')}
                                     <Dropdown
                                         data={
                                             categories?.map(item => ({
@@ -143,7 +145,7 @@ const HeaderComponent = () => {
                                     />
                                 </span>
                                 <span className="nav-link-modern">
-                                    Mùa
+                                    {t('seasons')}
                                     <Dropdown
                                         data={
                                             seasons?.map(item => ({
@@ -154,7 +156,7 @@ const HeaderComponent = () => {
                                         generateUrl={(url) => url}
                                     />
                                 </span>
-                                <NavLink to={path.ORDERS} className="nav-link-modern">Đơn hàng</NavLink>
+                                <NavLink to={path.ORDERS} className="nav-link-modern">{t('orders')}</NavLink>
                             </div>
                             <div className="header-modern__control">
                                 {/* Ô input tìm kiếm */}
@@ -162,7 +164,7 @@ const HeaderComponent = () => {
                                     className={`search-container-modern ${isSearchActive ? 'expanded' : 'collapsed'}`}
                                 >
                                     <Input
-                                        placeholder="Tìm kiếm sản phẩm..."
+                                        placeholder={t('searchPlaceholder')}
                                         value={searchValue}
                                         onChange={(e) => setSearchValue(e.target.value)}
                                         onKeyDown={handleKeyDown}
@@ -226,6 +228,8 @@ const HeaderComponent = () => {
                                         <PopupUser account={account} />
                                     </Popup>
                                 </span>
+
+                                <LanguageSwitcher variant="header" />
                             </div>
                         </>
                     ) : (
@@ -237,29 +241,29 @@ const HeaderComponent = () => {
                             </div>
                             <div className="header-modern__navbar">
                                 <span className="nav-link-modern">
-                                    Quản lý sản phẩm
+                                    {t('admin.productManagement')}
                                     <Dropdown
                                         data={[
-                                            {label: 'Danh sách sản phẩm', url: '/product-list'},
-                                            {label: 'Thêm sản phẩm', url: '/add-product'},
-                                            {label: 'Quản lý thuộc tính', url: '/product-attributes'},
+                                            {label: t('admin.productList'), url: '/product-list'},
+                                            {label: t('admin.addProduct'), url: '/add-product'},
+                                            {label: t('admin.productAttributes'), url: '/product-attributes'},
                                         ]}
                                         generateUrl={(url) => url}
                                     />
                                 </span>
                                 <span className="nav-link-modern">
-                                    Quản lý người dùng
+                                    {t('admin.userManagement')}
                                     <Dropdown
                                         data={[
-                                            {label: 'Danh sách người dùng đang bị cấm', url: path.USER_LIST_BAN},
-                                            {label: 'Danh sách người dùng hoạt động', url: path.USER_LIST},
+                                            {label: t('admin.userListBanned'), url: path.USER_LIST_BAN},
+                                            {label: t('admin.userListActive'), url: path.USER_LIST},
                                         ]}
                                         generateUrl={(url) => url}
                                     />
                                 </span>
-                                <NavLink to={path.ORDER_MANAGEMENT} className="nav-link-modern">Quản lý đơn hàng</NavLink>
-                                <NavLink to={path.INVOCE_MANAGEMENT} className="nav-link-modern">Quản lý hóa đơn</NavLink>
-                                <NavLink to={path.STATISTICS} className="nav-link-modern">Thống kê</NavLink>
+                                <NavLink to={path.ORDER_MANAGEMENT} className="nav-link-modern">{t('admin.orderManagement')}</NavLink>
+                                <NavLink to={path.INVOCE_MANAGEMENT} className="nav-link-modern">{t('admin.invoiceManagement')}</NavLink>
+                                <NavLink to={path.STATISTICS} className="nav-link-modern">{t('admin.statistics')}</NavLink>
                             </div>
                             <div className="header-modern__control">
                                 <span
@@ -286,6 +290,8 @@ const HeaderComponent = () => {
                                         <PopupUser account={account} />
                                     </Popup>
                                 </span>
+
+                                <LanguageSwitcher variant="header" />
                             </div>
                         </>
                     )}

@@ -1,0 +1,15 @@
+{
+  "title": "Sản Phẩm Nổi Bật",
+  "subtitle": "Khám phá bộ sưu tập thời trang mới nhất của chúng tôi",
+  "noProducts": "Không tìm thấy sản phẩm",
+  "tryAgain": "Vui lòng thử lại sau",
+  "loading": "Đang tải sản phẩm...",
+  "addToCart": "Thêm vào giỏ",
+  "viewDetails": "Xem chi tiết",
+  "outOfStock": "Hết hàng",
+  "inStock": "Còn hàng",
+  "price": "Giá",
+  "sale": "Giảm giá",
+  "new": "Mới",
+  "browserNotSupported": "Trình duyệt của bạn không hỗ trợ video."
+}

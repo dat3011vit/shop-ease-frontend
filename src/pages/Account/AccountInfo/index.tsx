@@ -10,7 +10,9 @@ import {toast} from "react-toastify";
 import changeInfo, {IChangeInfoForm} from "../../../service/user/changeInfo.ts";
 import {imageUpload} from "@/service/image/image.ts";
 import changeAvatar from "@/service/user/changeAvatar.ts";
+import { useTranslation } from 'react-i18next';
 const AccountInfo = () => {
+    const { t } = useTranslation('account');
     const {account}=useSelector((state:RootState)=>state.user)
     console.log({account2:account})
     const [form1] = Form.useForm();
@@ -32,11 +34,11 @@ const AccountInfo = () => {
                 phone: values.phone,
                 full_name:values.full_name
             })
-            toast.success("Cập nhật thành công")
+            toast.success(t('updateSuccess'))
             setLoading(false);
         }catch (e){
             console.log(e)
-            toast.error("Có lỗi xảy ra")
+            toast.error(t('updateFailed'))
             setLoading(false);
         }
 
@@ -58,89 +60,89 @@ const AccountInfo = () => {
                 const updateAvt= await changeAvatar({urlAvatar:urlrsp})
                 if(updateAvt?.data?.isSuccess){
                     setAvatar(urlrsp);
-                    toast.success("Cập nhật ảnh đại diện thành công")
+                    toast.success(t('updateAvatarSuccess'))
                 }
                 else {
-                    toast.error("Cập nhật thất bại")
+                    toast.error(t('updateAvatarFailed'))
                 }
             }
             else{
-                toast.error("Cập nhật thất bại")
+                toast.error(t('updateAvatarFailed'))
             }
 
         }catch (e) {
             // if(e?.data?.)
             console.log(e)
-            toast.error("Cập nhật thất bại")
+            toast.error(t('updateAvatarFailed'))
         }
 
     }
     return (
         <div className="account-info-modern">
             <div className="account-info-modern__header">
-                <h1 className="account-info-modern__title">Chỉnh sửa thông tin cá nhân</h1>
-                <p className="account-info-modern__subtitle">Cập nhật thông tin của bạn để có trải nghiệm tốt hơn</p>
+                <h1 className="account-info-modern__title">{t('editProfile')}</h1>
+                <p className="account-info-modern__subtitle">{t('updateInfoMessage')}</p>
             </div>
 
             <div className="account-info-modern__content">
                 <div className="account-info-modern__form-section">
-                    <Form 
-                        form={form1} 
+                    <Form
+                        form={form1}
                         layout="vertical"
                         initialValues={{ username: account?.username }}
                         className="account-info-modern__form"
                     >
-                        <Form.Item 
-                            label={<span className="form-label-modern">Mã thành viên</span>} 
+                        <Form.Item
+                            label={<span className="form-label-modern">{t('memberId')}</span>}
                             name="username"
                         >
-                            <Input 
-                                disabled={true} 
+                            <Input
+                                disabled={true}
                                 className="form-input-modern"
                                 style={{ height: '44px', fontSize: '15px' }}
                             />
                         </Form.Item>
-                        <Form.Item 
-                            label={<span className="form-label-modern">Tên đăng nhập</span>} 
+                        <Form.Item
+                            label={<span className="form-label-modern">{t('username')}</span>}
                             name="username"
                         >
-                            <Input 
-                                disabled={true} 
+                            <Input
+                                disabled={true}
                                 className="form-input-modern"
                                 style={{ height: '44px', fontSize: '15px' }}
                             />
                         </Form.Item>
                     </Form>
 
-                    <Form 
-                        form={form2} 
+                    <Form
+                        form={form2}
                         layout="vertical"
                         initialValues={{ email: account?.email, phone: account?.user?.phone, full_name: account?.user?.full_name }}
                         onFinish={onFinish}
                         className="account-info-modern__form"
                     >
-                        <Form.Item 
-                            label={<span className="form-label-modern">Số điện thoại <span className="text-[#f97316]">*</span></span>} 
+                        <Form.Item
+                            label={<span className="form-label-modern">{t('phone')} <span className="text-[#f97316]">*</span></span>}
                             name="phone"
-                            rules={[{required: true, message: "Vui lòng nhập số điện thoại!"}]}
+                            rules={[{required: true, message: t('phoneRequired')}]}
                         >
-                            <Input 
+                            <Input
                                 className="form-input-modern"
                                 disabled={loading}
                                 style={{ height: '44px', fontSize: '15px' }}
-                                placeholder="Nhập số điện thoại của bạn"
+                                placeholder={t('enterPhone')}
                             />
                         </Form.Item>
-                        <Form.Item 
-                            label={<span className="form-label-modern">Tên hiển thị <span className="text-[#f97316]">*</span></span>} 
-                            name="full_name" 
-                            rules={[{required: true, message: "Vui lòng nhập tên hiển thị!"}]}
+                        <Form.Item
+                            label={<span className="form-label-modern">{t('displayName')} <span className="text-[#f97316]">*</span></span>}
+                            name="full_name"
+                            rules={[{required: true, message: t('displayNameRequired')}]}
                         >
-                            <Input 
+                            <Input
                                 className="form-input-modern"
                                 disabled={loading}
                                 style={{ height: '44px', fontSize: '15px' }}
-                                placeholder="Nhập tên hiển thị của bạn"
+                                placeholder={t('enterDisplayName')}
                             />
                         </Form.Item>
                         <Form.Item style={{ marginTop: '0.5rem', marginBottom: 0 }}>
@@ -159,7 +161,7 @@ const AccountInfo = () => {
                                     borderRadius: '10px',
                                 }}
                             >
-                                Cập nhật thông tin
+                                {t('updateInfo')}
                             </Button>
                         </Form.Item>
                     </Form>

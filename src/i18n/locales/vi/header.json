@@ -1,0 +1,22 @@
+{
+  "home": "Trang chủ",
+  "categories": "Danh mục",
+  "seasons": "Mùa",
+  "orders": "Đơn hàng",
+  "cart": "Giỏ hàng",
+  "notifications": "Thông báo",
+  "profile": "Tài khoản",
+  "searchPlaceholder": "Tìm kiếm sản phẩm...",
+  "admin": {
+    "productManagement": "Quản lý sản phẩm",
+    "productList": "Danh sách sản phẩm",
+    "addProduct": "Thêm sản phẩm",
+    "productAttributes": "Quản lý thuộc tính",
+    "userManagement": "Quản lý người dùng",
+    "userListBanned": "Danh sách người dùng đang bị cấm",
+    "userListActive": "Danh sách người dùng hoạt động",
+    "orderManagement": "Quản lý đơn hàng",
+    "invoiceManagement": "Quản lý hóa đơn",
+    "statistics": "Thống kê"
+  }
+}

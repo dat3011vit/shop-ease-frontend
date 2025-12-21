@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import {Form, Input, Button, Card, message} from "antd";
 import changePassword from "../../../service/auth/changePassword.ts";
 import {toast} from "react-toastify";
+import { useTranslation } from 'react-i18next';
 import "../AccountInfo/index.scss";
 
 const ChangePassword = () => {
+    const { t } = useTranslation('account');
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
 
@@ -17,11 +19,11 @@ const ChangePassword = () => {
                 oldPassword: values.oldPassword,
                 newPassword: values.newPassword
             })
-            toast.success("Cập nhật thành công")
+            toast.success(t('updateSuccess'))
             setLoading(false);
         }catch (e){
             console.log(e)
-            toast.error("Có lỗi xảy ra")
+            toast.error(t('updateFailed'))
             setLoading(false);
         }
 
@@ -30,9 +32,9 @@ const ChangePassword = () => {
     return (
         <div className="account-form-modern">
             <div className="account-form-modern__header">
-                <h1 className="account-form-modern__title">Đổi mật khẩu</h1>
+                <h1 className="account-form-modern__title">{t('changePassword')}</h1>
                 <p className="account-form-modern__subtitle">
-                    Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác
+                    {t('passwordSecurityMessage')}
                 </p>
             </div>
             <div className="account-form-modern__card">
@@ -44,13 +46,13 @@ const ChangePassword = () => {
                 >
                     <Form.Item
                         name="oldPassword"
-                        label={<span className="form-label-modern">Mật khẩu cũ <span className="text-[#f97316]">*</span></span>}
+                        label={<span className="form-label-modern">{t('oldPassword')} <span className="text-[#f97316]">*</span></span>}
                         rules={[
-                            { required: true, message: "Vui lòng nhập mật khẩu cũ!" },
+                            { required: true, message: t('oldPasswordRequired') },
                         ]}
                     >
                         <Input.Password
-                            placeholder="Nhập mật khẩu cũ"
+                            placeholder={t('enterOldPassword')}
                             className="form-input-modern"
                             disabled={loading}
                             style={{ height: '44px', fontSize: '15px' }}
@@ -58,14 +60,14 @@ const ChangePassword = () => {
                     </Form.Item>
                     <Form.Item
                         name="newPassword"
-                        label={<span className="form-label-modern">Mật khẩu mới <span className="text-[#f97316]">*</span></span>}
+                        label={<span className="form-label-modern">{t('newPassword')} <span className="text-[#f97316]">*</span></span>}
                         rules={[
-                            { required: true, message: "Vui lòng nhập mật khẩu mới!" },
-                            { min: 6, message: "Mật khẩu phải có ít nhất 6 ký tự!" },
+                            { required: true, message: t('newPasswordRequired') },
+                            { min: 6, message: t('passwordMinLength') },
                         ]}
                     >
                         <Input.Password
-                            placeholder="Nhập mật khẩu mới"
+                            placeholder={t('enterNewPassword')}
                             className="form-input-modern"
                             disabled={loading}
                             style={{ height: '44px', fontSize: '15px' }}
@@ -73,22 +75,22 @@ const ChangePassword = () => {
                     </Form.Item>
                     <Form.Item
                         name="confirmPassword"
-                        label={<span className="form-label-modern">Xác nhận mật khẩu <span className="text-[#f97316]">*</span></span>}
+                        label={<span className="form-label-modern">{t('confirmPassword')} <span className="text-[#f97316]">*</span></span>}
                         dependencies={["newPassword"]}
                         rules={[
-                            { required: true, message: "Vui lòng xác nhận mật khẩu!" },
+                            { required: true, message: t('confirmPasswordRequired') },
                             ({ getFieldValue }) => ({
                                 validator(_, value) {
                                     if (!value || getFieldValue("newPassword") === value) {
                                         return Promise.resolve();
                                     }
-                                    return Promise.reject(new Error("Mật khẩu xác nhận không khớp!"));
+                                    return Promise.reject(new Error(t('passwordNotMatch')));
                                 },
                             }),
                         ]}
                     >
                         <Input.Password
-                            placeholder="Nhập lại mật khẩu mới"
+                            placeholder={t('enterConfirmPassword')}
                             className="form-input-modern"
                             disabled={loading}
                             style={{ height: '44px', fontSize: '15px' }}
@@ -110,7 +112,7 @@ const ChangePassword = () => {
                                 borderRadius: '10px',
                             }}
                         >
-                            Xác Nhận
+                            {t('confirm')}
                         </Button>
                     </Form.Item>
                 </Form>

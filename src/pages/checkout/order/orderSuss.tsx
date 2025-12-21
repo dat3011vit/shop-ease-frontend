@@ -1,9 +1,11 @@
 import { Button, Table, Typography, Card } from 'antd';
 import 'antd/dist/antd.css'; // Đảm bảo bạn đã import CSS của antd
+import { useTranslation } from 'react-i18next';
 
 const { Title} = Typography;
 
 const PaymentSuccess = () => {
+    const { t } = useTranslation('checkout');
     // Dữ liệu giả lập cho các thông tin đơn hàng
     const orderDetails = {
         orderId: "123456789",
@@ -15,12 +17,12 @@ const PaymentSuccess = () => {
     // Cột dữ liệu cho bảng hiển thị
     const columns = [
         {
-            title: 'Thông tin đơn hàng',
+            title: t('orderInfo'),
             dataIndex: 'key',
             key: 'key',
         },
         {
-            title: 'Giá trị',
+            title: t('value'),
             dataIndex: 'value',
             key: 'value',
         },
@@ -29,19 +31,19 @@ const PaymentSuccess = () => {
     // Dữ liệu bảng
     const data = [
         {
-            key: 'Thông tin đơn hàng',
+            key: t('orderInfo'),
             value: orderDetails.orderId,
         },
         {
-            key: 'Tổng tiền',
+            key: t('totalPrice'),
             value: orderDetails.totalPrice,
         },
         {
-            key: 'Thời gian thanh toán',
+            key: t('paymentTime'),
             value: orderDetails.paymentTime,
         },
         {
-            key: 'Mã giao dịch',
+            key: t('transactionId'),
             value: orderDetails.transactionId,
         },
     ];
@@ -49,8 +51,8 @@ const PaymentSuccess = () => {
     return (
         <div className="container" style={{ paddingTop: '50px' }}>
             <Card style={{ maxWidth: '600px', margin: 'auto' }}>
-                <Title level={1} className="text-success text-center">Thanh toán thành công</Title>
-                <Title level={2}>Chi tiết đơn hàng</Title>
+                <Title level={1} className="text-success text-center">{t('paymentSuccess')}</Title>
+                <Title level={2}>{t('orderDetails')}</Title>
                 <Table
                     columns={columns}
                     dataSource={data}
@@ -58,7 +60,7 @@ const PaymentSuccess = () => {
                     bordered
                 />
                 <div className="text-center" style={{ marginTop: '20px' }}>
-                    <Button type="primary" href="/">Về trang chủ</Button>
+                    <Button type="primary" href="/">{t('backToHome')}</Button>
                 </div>
             </Card>
         </div>

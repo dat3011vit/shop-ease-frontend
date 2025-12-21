@@ -12,6 +12,7 @@ import { SHIPPING_PRICE, TAX_PRICE } from "../../../utils/enum";
 import { TOderDetails } from "../../../types/order-type";
 import { usePayment } from "../../../hooks/usePayment";
 import toast from "react-hot-toast";
+import { useTranslation } from 'react-i18next';
 
 interface CartOrderProps {
     products?: Product[];
@@ -27,6 +28,7 @@ const CartOrder = ({
     paymentMethod,
     type = "cart" || "order",
 }: CartOrderProps) => {
+    const { t } = useTranslation('cart');
     const { cart } = useSelector((state: RootState) => state.cart);
     const { mutate: paymentOnline } = usePayment.usePaymentOnline();
 
@@ -62,17 +64,17 @@ const CartOrder = ({
     };
     return (
         <div className="cart-order">
-            {type === "cart" && <h3>Order Summary</h3>}
+            {type === "cart" && <h3>{t('orderSummary')}</h3>}
             <div className="cart-order__details">
                 <div className="cart-order__item">
-                    <span className="cart-order__item--title">Subtotal</span>
+                    <span className="cart-order__item--title">{t('subtotal')}</span>
                     <span className="cart-order__item--price">
                         {cart?.length ? formatMoney(subtotal || 0) : 0}
                     </span>
                 </div>
                 <div className="cart-order__item">
                     <span className="cart-order__item--title">
-                        Shipping estimate
+                        {t('shippingEstimate')}
                     </span>
                     <span className="cart-order__item--price">
                         {cart?.length ? formatMoney(SHIPPING_PRICE) : 0}
@@ -80,14 +82,14 @@ const CartOrder = ({
                 </div>
                 <div className="cart-order__item">
                     <span className="cart-order__item--title">
-                        Tax estimate
+                        {t('taxEstimate')}
                     </span>
                     <span className="cart-order__item--price">
                         {TAX_PRICE}%
                     </span>
                 </div>
                 <div className="cart-order__item">
-                    <span className="cart-order__item--total">Order total</span>
+                    <span className="cart-order__item--total">{t('orderTotal')}</span>
                     <span className="cart-order__item--total">
                         {cart?.length ? formatMoney(orderTotal) : 0}
                     </span>
@@ -102,14 +104,14 @@ const CartOrder = ({
                                 : handlePayment
                         }
                     >
-                        {type === "cart" ? " Checkout" : "Confirm Order"}
+                        {type === "cart" ? t('checkout') : t('confirmOrder')}
                     </Button>
                 </div>
                 <div className="cart-order__info">
                     <Icon icon="fluent:info-16-regular" />
                     <p>
-                        Learn more <Link to={""}>Taxes</Link> and{" "}
-                        <Link to={""}>Shipping</Link> infomation
+                        {t('learnMore')} <Link to={""}>{t('taxes')}</Link> {t('and')}{" "}
+                        <Link to={""}>{t('shipping')}</Link> {t('information')}
                     </p>
                 </div>
             </div>

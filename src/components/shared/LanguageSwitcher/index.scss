@@ -1,0 +1,146 @@
+@import "../../../styles/abstracts/";
+
+.language-switcher {
+  position: relative;
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #fef3e2;
+    }
+  }
+
+  &__flag {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: 4px;
+  }
+
+  // &__arrow {
+  //   font-size: 18px;
+  //   color: #475569;
+  //   transition: transform 0.2s ease;
+
+  //   &.rotated {
+  //     transform: rotate(180deg);
+  //   }
+  // }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 200px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    padding: 8px;
+    z-index: 1000;
+    animation: slideDown 0.15s ease-out;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 12px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+
+    &:hover {
+      background: #f9fafb;
+    }
+
+    &.active {
+      background: #fef3e2;
+
+      .language-switcher__item-name {
+        color: #f97316;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__item-flag {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: 4px;
+  }
+
+  &__item-name {
+    flex: 1;
+    font-size: 15px;
+    color: #374151;
+  }
+
+  &__check {
+    font-size: 18px;
+    color: #f97316;
+  }
+
+  // Header variant (compact, icon only)
+  &--header {
+    .language-switcher__trigger {
+      @include box(4.4rem, 4.4rem);
+      @include flex(center, center, null, null);
+      padding: 0.8rem;
+    }
+
+    .language-switcher__name {
+      display: none;
+    }
+  }
+
+  // Auth variant (expanded, with language name)
+  &--auth {
+    .language-switcher__trigger {
+      padding: 10px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+
+      &:hover {
+        border-color: #f97316;
+        background: transparent;
+      }
+    }
+
+    .language-switcher__name {
+      display: block;
+      font-size: 15px;
+      font-weight: 500;
+      color: #e5e8ec;
+    }
+
+    .language-switcher__dropdown {
+      right: 0;
+      left: auto;
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

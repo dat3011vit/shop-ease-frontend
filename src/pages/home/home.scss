@@ -1,5 +1,18 @@
 @import "../../styles/abstracts/";
 
+.intro-video-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+
+    .intro-video {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
 .home-page-modern {
     min-height: 100vh;
     background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);

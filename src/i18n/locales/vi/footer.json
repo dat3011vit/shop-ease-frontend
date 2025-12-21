@@ -1,0 +1,32 @@
+{
+  "getStarted": {
+    "title": "Bắt đầu",
+    "home": "Trang chủ",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "cart": "Giỏ hàng"
+  },
+  "explore": {
+    "title": "Khám phá",
+    "products": "Sản phẩm",
+    "categories": "Danh mục",
+    "orders": "Đơn hàng",
+    "wishlist": "Yêu thích"
+  },
+  "support": {
+    "title": "Hỗ trợ",
+    "faq": "Câu hỏi thường gặp",
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản sử dụng",
+    "contact": "Liên hệ"
+  },
+  "community": {
+    "title": "Cộng đồng",
+    "news": "Tin tức",
+    "blog": "Blog",
+    "careers": "Tuyển dụng",
+    "about": "Về chúng tôi"
+  },
+  "description": "Mua sắm trực tuyến với chất lượng tốt nhất",
+  "copyright": "© 2025 ORANGE FASHION. Tất cả quyền được bảo lưu."
+}

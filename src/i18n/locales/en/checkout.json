@@ -1,0 +1,22 @@
+{
+  "contactInfo": "CONTACT INFO",
+  "shippingAddress": "SHIPPING ADDRESS",
+  "paymentMethod": "PAYMENT METHOD",
+  "cashOnDelivery": "Cash on delivery",
+  "payWithVnpay": "Pay with VNPay",
+  "confirmPaymentMethod": "Confirm payment method",
+  "paymentMethodSuccess": "Chosen payment method successfully",
+  "paymentSuccess": "Payment successful",
+  "orderDetails": "Order details",
+  "orderInfo": "Order information",
+  "value": "Value",
+  "totalPrice": "Total price",
+  "paymentTime": "Payment time",
+  "transactionId": "Transaction ID",
+  "backToHome": "Back to home",
+  "createOrder": "Create Order",
+  "amount": "Amount",
+  "amountRequired": "Please enter amount!",
+  "orderInfoRequired": "Please enter order information!",
+  "pay": "Pay"
+}

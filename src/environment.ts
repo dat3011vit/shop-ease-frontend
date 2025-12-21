@@ -31,7 +31,7 @@ export const SERVER = {
     host: "http://localhost",
     port: 7081,
     get url() {
-      return `${this.host}:${this.port}/api`;
+      return `${this.host}:${this.port}/api/chatbot`;
     },
   },
   noti: {

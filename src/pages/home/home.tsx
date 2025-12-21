@@ -13,10 +13,13 @@ import {Pagination} from "../../components/ui";
 import getListProduct from "../../service/product/getListProduct.ts";
 import ProductListV2 from "@/components/products/ProductListV2";
 import {Product} from "@/service/product/product.ts";
+import introVideo from '@/assets/videos/video-orange-intro.mp4';
+import { useTranslation } from 'react-i18next';
 import './home.scss';
 
 const filteredProducts: TProductListResponse = dataFake;
 export default function Home() {
+    const { t } = useTranslation('product');
     const [page,setPage]=useState(1);
     const [totalPage,setTotalPage]=useState(0);
     const [listProduct,setListProduct] = useState<IProduct[]>([])
@@ -50,6 +53,20 @@ export default function Home() {
     console.log({listProduct})
     return (
         <div className="home-page-modern">
+            {/* Video ngay dưới header */}
+            <div className="intro-video-container">
+                <video
+                    className="intro-video"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                >
+                    <source src={introVideo} type="video/mp4" />
+                    {t('browserNotSupported')}
+                </video>
+            </div>
+
             <SectionBannerHotWord />
             
             <div className="home-page-modern__content">
@@ -57,10 +74,10 @@ export default function Home() {
                     <div className="home-page-modern__header">
                         <h1 className="home-page-modern__title">
                             <Icon icon="solar:shop-bold-duotone" className="home-page-modern__title-icon" />
-                            Sản Phẩm Nổi Bật
+                            {t('title')}
                         </h1>
                         <p className="home-page-modern__subtitle">
-                            Khám phá bộ sưu tập thời trang mới nhất của chúng tôi
+                            {t('subtitle')}
                         </p>
                     </div>
 
@@ -81,10 +98,10 @@ export default function Home() {
                                 <Icon icon="iconoir:file-not-found" />
                             </div>
                             <h2 className="home-page-modern__empty-title">
-                                Không tìm thấy sản phẩm
+                                {t('noProducts')}
                             </h2>
                             <p className="home-page-modern__empty-text">
-                                Vui lòng thử lại sau
+                                {t('tryAgain')}
                             </p>
                         </div>
                     )}

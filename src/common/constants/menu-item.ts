@@ -1,10 +1,11 @@
 import { FcEditImage, FcManager, FcInfo, FcAssistant } from 'react-icons/fc';
 import {IconType} from "react-icons";
 import {path} from "./path.ts";
+import i18n from '@/i18n';
 
 type MenuItem = {
     id: number;
-    text: string;
+    textKey: string;
     icon:IconType; // Đổi Element thành JSX.Element
     path: string;
 };
@@ -13,32 +14,32 @@ type MenuItem = {
 export const menuSidebar:MenuItem[] = [
     {
         id: 1,
-        text: 'Hồ sơ',
+        textKey: 'account:profile',
         icon: FcEditImage,
         path: 'ho-so',
     },
     {
         id: 2,
-        text: 'Địa chỉ',
+        textKey: 'account:address',
         icon: FcManager,
         path: 'dia-chi',
     },
 
     {
         id: 3,
-        text: 'Đổi mật khẩu',
+        textKey: 'account:changePassword',
         icon: FcInfo,
         path: 'doi-mat-khau',
     },
     // {
     //     id: 4,
-    //     text: 'Hóa đơn',
+    //     textKey: 'Hóa đơn',
     //     icon: FcAssistant,
     //     path: path.INVOCE_USER
     // },
     {
         id: 5,
-        text: 'Đổi email',
+        textKey: 'account:changeEmail',
         icon: FcInfo,
         path: 'doi-email',
     },

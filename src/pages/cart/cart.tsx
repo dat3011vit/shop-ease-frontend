@@ -7,9 +7,11 @@ import {Cart, ICartItem} from "../../service/cart/cart.ts";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 import {formatMoney} from "../../utils";
+import { useTranslation } from 'react-i18next';
 import './cart.scss';
 
 const AdvancedCartPage = () => {
+    const { t } = useTranslation('cart');
     const [page, setPage] = useState<number>(1);
     const [totalPage, setTotalPage] = useState<number>(0);
     const [cartItems, setCartItems] = useState<(ICartItem & { selected: boolean })[]>([]);
@@ -70,7 +72,7 @@ const AdvancedCartPage = () => {
     const handlePurchase=()=>{
         const selectedItems = cartItems.filter((item) => item.selected);
         if (selectedItems.length === 0) {
-            toast.warning('Vui lòng chọn ít nhất một sản phẩm để mua.');
+            toast.warning(t('selectAtLeastOne'));
             return;
         }
         navigate("/checkout",{
@@ -191,10 +193,10 @@ const AdvancedCartPage = () => {
                     <div className="cart-page-modern__header">
                         <h1 className="cart-page-modern__title">
                             <Icon icon="solar:cart-large-4-bold-duotone" />
-                            Giỏ Hàng Của Tôi
+                            {t('title')}
                         </h1>
                         <p className="cart-page-modern__subtitle">
-                            {cartItems.length} sản phẩm trong giỏ hàng
+                            {t('itemsCount', { count: cartItems.length })}
                         </p>
                     </div>
 
@@ -207,7 +209,7 @@ const AdvancedCartPage = () => {
                                         onChange={(e) => handleSelectAllChange(e.target.checked)}
                                         className="cart-page-modern__select-all"
                                     >
-                                        <span className="cart-page-modern__select-all-text">Chọn tất cả</span>
+                                        <span className="cart-page-modern__select-all-text">{t('selectAll')}</span>
                                     </Checkbox>
                                 </div>
 
@@ -297,22 +299,22 @@ const AdvancedCartPage = () => {
                                 <div className="cart-page-modern__summary-header">
                                     <h3 className="cart-page-modern__summary-title">
                                         <Icon icon="solar:receipt-bold-duotone" />
-                                        Tóm tắt đơn hàng
+                                        {t('orderSummary')}
                                     </h3>
                                 </div>
 
                                 <div className="cart-page-modern__summary-content">
                                     <div className="cart-page-modern__summary-row">
-                                        <span>Tạm tính:</span>
+                                        <span>{t('subtotal')}:</span>
                                         <span>{formatMoney(total)}</span>
                                     </div>
                                     <div className="cart-page-modern__summary-row">
-                                        <span>Phí vận chuyển:</span>
-                                        <span className="cart-page-modern__shipping-free">Miễn phí</span>
+                                        <span>{t('shippingFee')}:</span>
+                                        <span className="cart-page-modern__shipping-free">{t('free')}</span>
                                     </div>
                                     <div className="cart-page-modern__summary-divider"></div>
                                     <div className="cart-page-modern__summary-total">
-                                        <span>Tổng thanh toán:</span>
+                                        <span>{t('totalPayment')}:</span>
                                         <span className="cart-page-modern__summary-total-amount">
                                             {formatMoney(total)}
                                         </span>
@@ -326,13 +328,13 @@ const AdvancedCartPage = () => {
                                         onClick={handlePurchase}
                                     >
                                         <Icon icon="solar:wallet-money-bold" />
-                                        Thanh toán
+                                        {t('checkout')}
                                     </button>
                                 </div>
 
                                 <div className="cart-page-modern__voucher">
                                     <Icon icon="solar:ticket-bold-duotone" />
-                                    <span>Áp dụng mã giảm giá: Voucher giảm đến 150k</span>
+                                    <span>{t('voucherMessage')}</span>
                                 </div>
                             </div>
                         </div>
@@ -341,16 +343,16 @@ const AdvancedCartPage = () => {
                             <div className="cart-page-modern__empty-icon">
                                 <Icon icon="solar:cart-large-4-bold-duotone" />
                             </div>
-                            <h2 className="cart-page-modern__empty-title">Giỏ hàng trống</h2>
+                            <h2 className="cart-page-modern__empty-title">{t('emptyCart')}</h2>
                             <p className="cart-page-modern__empty-text">
-                                Bạn chưa có sản phẩm nào trong giỏ hàng
+                                {t('emptyMessage')}
                             </p>
                             <button
                                 className="cart-page-modern__empty-btn"
                                 onClick={() => navigate('/')}
                             >
                                 <Icon icon="solar:shop-bold" />
-                                Tiếp tục mua sắm
+                                {t('continueShopping')}
                             </button>
                         </div>
                     )}

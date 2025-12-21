@@ -15,11 +15,13 @@ import {setAuth} from "../../../store/auth-slice.ts";
 import {path} from "../../../common/constants/path.ts";
 import {useState} from "react";
 import {ERole} from "../../../common/models/User.ts";
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
     const [loading,setLoading]=useState<boolean>(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { t } = useTranslation(['auth', 'validation']);
     type FieldType = {
         username: string;
         password: string;
@@ -59,7 +61,7 @@ const Login = () => {
                 }
                 dispatch(setAccount(account));
 
-                toast.success('Đăng nhập thành công!');
+                toast.success(t('auth:login.loginSuccess'));
                 // Cập nhật role & auth state an toàn
                 dispatch(setRole(roleName));
                 dispatch(setAuth({
@@ -95,7 +97,7 @@ const Login = () => {
             console.log(error);
             setLoading(false);
             const message = (error as { response?: { data?: { message?: string } } })?.response?.data?.message;
-            toast.error(message || 'Đăng nhập không thành công');
+            toast.error(message || t('auth:login.loginFailed'));
         }
         // formLogin.resetFields();
     };
@@ -120,9 +122,9 @@ const Login = () => {
     return (
         <div className="w-full max-w-xl mx-auto">
             <div className="text-center mb-10">
-                <h2 className="text-4xl font-bold text-[#0f172a]">Đăng nhập</h2>
+                <h2 className="text-4xl font-bold text-[#0f172a]">{t('auth:login.title')}</h2>
                 <p className="text-lg text-[#475569] mt-3">
-                    Nhập thông tin để tiếp tục mua sắm
+                    {t('auth:login.subtitle')}
                 </p>
             </div>
 
@@ -137,30 +139,30 @@ const Login = () => {
                 size="large"
             >
                 <Form.Item
-                    label={<span className="text-lg font-semibold text-[#0f172a]">Email hoặc tên tài khoản</span>}
+                    label={<span className="text-lg font-semibold text-[#0f172a]">{t('auth:login.username')}</span>}
                     name="username"
                     rules={[
-                        { required: true, message: 'Vui lòng nhập tên tài khoản!' },
+                        { required: true, message: t('validation:usernameRequired') },
                     ]}
                     className="mb-6"
                 >
                     <Input
-                        placeholder="Email hoặc tên tài khoản"
+                        placeholder={t('auth:login.username')}
                         className="py-3 text-lg"
                         style={{ height: '54px', fontSize: '16px' }}
                     />
                 </Form.Item>
 
                 <Form.Item
-                    label={<span className="text-lg font-semibold text-[#0f172a]">Mật khẩu</span>}
+                    label={<span className="text-lg font-semibold text-[#0f172a]">{t('auth:login.password')}</span>}
                     name="password"
                     rules={[
-                        { required: true, message: 'Vui lòng nhập mật khẩu!' },
+                        { required: true, message: t('validation:passwordRequired') },
                     ]}
                     className="mb-5"
                 >
                     <Input.Password
-                        placeholder="Mật khẩu"
+                        placeholder={t('auth:login.password')}
                         className="py-3 text-lg"
                         style={{ height: '54px', fontSize: '16px' }}
                     />
@@ -172,7 +174,7 @@ const Login = () => {
                         onClick={handleForgotPasswordClick}
                         className="text-[#f97316] hover:text-[#ea580c] transition"
                     >
-                        Quên mật khẩu?
+                        {t('auth:login.forgotPassword')}
                     </button>
                 </div>
 
@@ -182,17 +184,17 @@ const Login = () => {
                     htmlType="submit"
                     className="mt-2 inline-flex h-16 w-full items-center justify-center rounded-lg bg-[#f97316] text-lg font-semibold text-white shadow-md transition hover:bg-[#ea580c]"
                 >
-                    Đăng nhập
+                    {t('auth:login.submitButton')}
                 </Button>
 
                 <div className="flex justify-center mt-7 text-lg text-[#475569]">
-                    <span>Bạn chưa có tài khoản?</span>
+                    <span>{t('auth:login.noAccount')}</span>
                     <button
                         type="button"
                         onClick={handleRegisterClick}
                         className="ml-2 font-semibold text-[#f97316] hover:text-[#ea580c] transition bg-transparent border-none outline-none p-0"
                     >
-                        Đăng ký ngay
+                        {t('auth:login.registerNow')}
                     </button>
                 </div>
             </Form>

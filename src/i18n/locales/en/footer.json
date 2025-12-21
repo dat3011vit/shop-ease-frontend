@@ -1,0 +1,32 @@
+{
+  "getStarted": {
+    "title": "Get Started",
+    "home": "Home",
+    "login": "Login",
+    "register": "Register",
+    "cart": "Cart"
+  },
+  "explore": {
+    "title": "Explore",
+    "products": "Products",
+    "categories": "Categories",
+    "orders": "Orders",
+    "wishlist": "Wishlist"
+  },
+  "support": {
+    "title": "Support",
+    "faq": "FAQ",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact"
+  },
+  "community": {
+    "title": "Community",
+    "news": "News",
+    "blog": "Blog",
+    "careers": "Careers",
+    "about": "About Us"
+  },
+  "description": "Online shopping with the best quality",
+  "copyright": "© 2025 ORANGE FASHION. All rights reserved."
+}

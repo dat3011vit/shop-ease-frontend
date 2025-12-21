@@ -1,16 +1,388 @@
 @import "../../../styles/abstracts/";
 
 .loading {
-      position: fixed;
-      z-index: 20;
-      inset: 0px;
-      background-color: rgba(0, 0, 0, 0.4);
-      @include flex(center, center, null, null);
-      @include box(100%, 100%);
+    position: fixed;
+    z-index: 20;
+    inset: 0px;
+    background: linear-gradient(135deg, #dbb27c 0%, #ca9a64 50%, #db581b 100%);
+    @include flex(center, center, null, null);
+    @include box(100%, 100%);
+    overflow: hidden;
 
-      svg {
+    // Animated background particles
+    &::before {
+        content: '';
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        background-image: 
+            radial-gradient(circle, rgba(255, 140, 0, 0.1) 1px, transparent 1px),
+            radial-gradient(circle, rgba(255, 165, 0, 0.08) 1px, transparent 1px);
+        background-size: 50px 50px, 80px 80px;
+        background-position: 0 0, 40px 40px;
+        animation: particleMove 20s linear infinite;
+    }
 
-            @include box(10rem, 10rem);
-            color: $white;
-      }
+    .loading-container {
+        position: relative;
+        @include flex(center, center, column, null);
+        gap: 2rem;
+        z-index: 1;
+    }
+
+    // Animated circles in background
+    .circle-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 140, 0, 0.15), transparent);
+            animation: float 8s ease-in-out infinite;
+            
+            &.circle-1 {
+                @include box(300px, 300px);
+                top: 10%;
+                left: 10%;
+                animation-delay: 0s;
+            }
+            
+            &.circle-2 {
+                @include box(200px, 200px);
+                top: 60%;
+                right: 15%;
+                animation-delay: 2s;
+                animation-duration: 10s;
+            }
+            
+            &.circle-3 {
+                @include box(250px, 250px);
+                bottom: 10%;
+                left: 50%;
+                animation-delay: 4s;
+                animation-duration: 12s;
+            }
+        }
+    }
+
+    // Logo wrapper with glow effect
+    .logo-wrapper {
+        position: relative;
+        @include flex(center, center, null, null);
+        animation: logoEntrance 1.5s ease-out;
+        
+        .logo-glow {
+            position: absolute;
+            @include box(250px, 250px);
+            background: radial-gradient(circle, rgba(255, 140, 0, 0.4), transparent 70%);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+            filter: blur(20px);
+        }
+        
+        .logo-image {
+            position: relative;
+            @include box(200px, auto);
+            filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.5));
+            animation: logoFloat 3s ease-in-out infinite, logoRotate 8s linear infinite;
+            z-index: 1;
+        }
+    }
+
+    // Loading text with wave animation
+    .loading-text {
+        @include flex(center, center, null, null);
+        font-size: 3rem;
+        font-weight: 600;
+        color: #fff;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        text-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+        
+        span {
+            display: inline-block;
+            animation: wave 1.5s ease-in-out infinite;
+            
+            @for $i from 1 through 7 {
+                &:nth-child(#{$i}) {
+                    animation-delay: #{$i * 0.1}s;
+                }
+            }
+            
+            &.dots {
+                margin-left: 0.2em;
+                
+                span {
+                    animation: blink 1.5s ease-in-out infinite;
+                    
+                    @for $i from 1 through 3 {
+                        &:nth-child(#{$i}) {
+                            animation-delay: #{$i * 0.2}s;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Progress bar
+    .progress-bar {
+        position: relative;
+        width: 300px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 
+            0 0 10px rgba(255, 140, 0, 0.3),
+            inset 0 0 10px rgba(0, 0, 0, 0.2);
+        
+        .progress-fill {
+            position: absolute;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, 
+                #ff8c00 0%, 
+                #ffa500 50%, 
+                #ff8c00 100%);
+            border-radius: 10px;
+            animation: progress 2.5s ease-in-out infinite;
+            box-shadow: 
+                0 0 10px rgba(255, 140, 0, 0.8),
+                0 0 20px rgba(255, 140, 0, 0.4);
+            
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(90deg, 
+                    transparent, 
+                    rgba(255, 255, 255, 0.3), 
+                    transparent);
+                animation: shimmer 1s linear infinite;
+            }
+        }
+    }
+
+    // Spinning ring around everything
+    .spinner-ring {
+        position: absolute;
+        @include box(350px, 350px);
+        border: 3px solid transparent;
+        border-top-color: #ff8c00;
+        border-right-color: #ffa500;
+        border-radius: 50%;
+        animation: spin 3s linear infinite;
+        
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+        }
+        
+        &::before {
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 3px solid transparent;
+            border-top-color: #ffa500;
+            border-left-color: #ff8c00;
+            animation: spin 2s linear infinite reverse;
+        }
+        
+        &::after {
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid transparent;
+            border-top-color: rgba(255, 140, 0, 0.5);
+            animation: spin 1.5s linear infinite;
+        }
+    }
+}
+
+// ==================== KEYFRAME ANIMATIONS ====================
+
+@keyframes particleMove {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-50px, -50px);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-30px) scale(1.1);
+        opacity: 0.6;
+    }
+}
+
+@keyframes logoEntrance {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(10deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes logoRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+}
+
+@keyframes progress {
+    0% {
+        width: 0%;
+        left: 0;
+    }
+    50% {
+        width: 70%;
+        left: 0;
+    }
+    100% {
+        width: 0%;
+        left: 100%;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+    .loading {
+        .logo-wrapper {
+            .logo-glow {
+                @include box(180px, 180px);
+            }
+            
+            .logo-image {
+                @include box(150px, auto);
+            }
+        }
+        
+        .loading-text {
+            font-size: 1.5rem;
+        }
+        
+        .progress-bar {
+            width: 250px;
+        }
+        
+        .spinner-ring {
+            @include box(280px, 280px);
+        }
+        
+        .circle-container .circle {
+            &.circle-1 {
+                @include box(200px, 200px);
+            }
+            
+            &.circle-2 {
+                @include box(150px, 150px);
+            }
+            
+            &.circle-3 {
+                @include box(180px, 180px);
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .loading {
+        .logo-wrapper {
+            .logo-image {
+                @include box(120px, auto);
+            }
+        }
+        
+        .loading-text {
+            font-size: 1.2rem;
+        }
+        
+        .progress-bar {
+            width: 200px;
+        }
+    }
 }

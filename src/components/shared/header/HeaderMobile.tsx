@@ -41,10 +41,10 @@ export const HeaderMobileComponent = ({ onClose }: HeaderMobileProps) => {
             your stories and share them
           </p>
           <div className="header-mobile__social--icon">
-            <Link to={"https://www.facebook.com/profile.php?id=61569844931705"}><Icon icon={"logos:facebook"} /></Link>
+            <Link to={"https://www.facebook.com/FashionStore678"}><Icon icon={"logos:facebook"} /></Link>
             <Link to={"/"}><Icon icon={"logos:twitter"} /></Link>
-            <Link to={"https://www.youtube.com/@komaiptit5792"}><Icon icon="openmoji:youtube" /></Link>
-            <Link to={"https://t.me/+84963045750"}><Icon icon="logos:telegram" /></Link>
+            <Link to={"https://www.youtube.com/@tranat833"}><Icon icon="openmoji:youtube" /></Link>
+            <Link to={"https://t.me/+84941217281"}><Icon icon="logos:telegram" /></Link>
           </div>
         </div>
       </div>

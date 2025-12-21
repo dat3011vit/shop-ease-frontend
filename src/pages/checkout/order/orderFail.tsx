@@ -1,8 +1,10 @@
 import  { useState } from 'react';
 import { Form, Input, Button, Card } from 'antd';
 import 'antd/dist/antd.css'; // Đảm bảo bạn đã import CSS của antd
+import { useTranslation } from 'react-i18next';
 
 const OrderFail = () => {
+    const { t } = useTranslation('checkout');
     const [amount, setAmount] = useState(299999);
     const [orderInfo, setOrderInfo] = useState("Thanh toan don hang 2923");
 
@@ -29,13 +31,13 @@ const OrderFail = () => {
                     <Card>
                         <div className="card-body">
                             <img src="/vnpay-logo.png" alt="VNPay Logo" style={{ width: '200px' }} />
-                            <h2 className="card-title">Tạo Đơn Hàng</h2>
+                            <h2 className="card-title">{t('createOrder')}</h2>
                             <Form onFinish={handleSubmit} initialValues={{ amount, orderInfo }}>
                                 {/* Trường nhập số tiền */}
                                 <Form.Item
-                                    label="Số tiền"
+                                    label={t('amount')}
                                     name="amount"
-                                    rules={[{ required: true, message: 'Vui lòng nhập số tiền!' }]}
+                                    rules={[{ required: true, message: t('amountRequired') }]}
                                 >
                                     <Input
                                         type="number"
@@ -46,9 +48,9 @@ const OrderFail = () => {
 
                                 {/* Trường nhập thông tin đơn hàng */}
                                 <Form.Item
-                                    label="Thông tin đơn hàng"
+                                    label={t('orderInfo')}
                                     name="orderInfo"
-                                    rules={[{ required: true, message: 'Vui lòng nhập thông tin đơn hàng!' }]}
+                                    rules={[{ required: true, message: t('orderInfoRequired') }]}
                                 >
                                     <Input
                                         type="text"
@@ -60,7 +62,7 @@ const OrderFail = () => {
                                 {/* Nút gửi đơn hàng */}
                                 <Form.Item>
                                     <Button type="primary" htmlType="submit">
-                                        Thanh toán
+                                        {t('pay')}
                                     </Button>
                                 </Form.Item>
                             </Form>

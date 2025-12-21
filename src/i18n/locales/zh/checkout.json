@@ -1,0 +1,22 @@
+{
+  "contactInfo": "联系信息",
+  "shippingAddress": "收货地址",
+  "paymentMethod": "支付方式",
+  "cashOnDelivery": "货到付款",
+  "payWithVnpay": "使用VNPay支付",
+  "confirmPaymentMethod": "确认支付方式",
+  "paymentMethodSuccess": "支付方式选择成功",
+  "paymentSuccess": "支付成功",
+  "orderDetails": "订单详情",
+  "orderInfo": "订单信息",
+  "value": "值",
+  "totalPrice": "总价",
+  "paymentTime": "支付时间",
+  "transactionId": "交易ID",
+  "backToHome": "返回首页",
+  "createOrder": "创建订单",
+  "amount": "金额",
+  "amountRequired": "请输入金额！",
+  "orderInfoRequired": "请输入订单信息！",
+  "pay": "支付"
+}

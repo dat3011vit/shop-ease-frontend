@@ -9,8 +9,10 @@ import { useDispatch } from "react-redux";
 // import { PAYMENTS_METHOD } from "../../../utils/constant";
 import toast from "react-hot-toast";
 import {PAYMENTS_METHOD} from "../../../utils/constant.ts";
+import { useTranslation } from 'react-i18next';
 
 const CheckoutInfo = () => {
+    const { t } = useTranslation('checkout');
     const [selectPaymentMethod, setSelectPaymentMethod] = useState<string>("");
     const dispatch = useDispatch();
 
@@ -21,7 +23,7 @@ const CheckoutInfo = () => {
     };
     const handleConfirmPaymentMethod = () => {
         if (selectPaymentMethod) {
-            toast.success("Chosen payment method successfully");
+            toast.success(t('paymentMethodSuccess'));
             // dispatch(setPaymentMethod(selectPaymentMethod));
         }
     };
@@ -30,21 +32,21 @@ const CheckoutInfo = () => {
         <div className="checkout-info">
             <AccordionPayment
                 infoTitle="Enrico Smith+855 - 666 - 7744"
-                title="CONTACT INFO"
+                title={t('contactInfo')}
                 icon="ph:user-circle"
             >
                 <span></span>
             </AccordionPayment>
             <AccordionPayment
                 infoTitle="St. Paul's Road, Norris, SD 57560, Dakota, USA"
-                title="SHIPPING ADDRESS"
+                title={t('shippingAddress')}
                 icon="hugeicons:pin-location-01"
             >
                 {/*<CheckoutForm />*/}
             </AccordionPayment>
             <AccordionPayment
                 infoTitle="Vnpay/Cash on delivery"
-                title="PAYMENT METHOD"
+                title={t('paymentMethod')}
                 icon="hugeicons:credit-card-pos"
             >
                 <div className="checkout-info__wrapper">
@@ -57,7 +59,7 @@ const CheckoutInfo = () => {
                         <div className="payment__icon">
                             <Icon icon="mdi:cash-on-delivery" />
                         </div>
-                        <p>Cash on delivery</p>
+                        <p>{t('cashOnDelivery')}</p>
                     </div>
                     <div className="checkout-info__payment">
                         <RadioBox
@@ -68,7 +70,7 @@ const CheckoutInfo = () => {
                         <div className="payment__icon">
                             <Icon icon="fluent:wallet-credit-card-16-regular" />
                         </div>
-                        <p>Pay with vnpay</p>
+                        <p>{t('payWithVnpay')}</p>
                     </div>
                     <Button
                         className="checkout-info__submit"
@@ -77,7 +79,7 @@ const CheckoutInfo = () => {
                         color="black"
                         onClick={handleConfirmPaymentMethod}
                     >
-                        Confirm payment method
+                        {t('confirmPaymentMethod')}
                     </Button>
                 </div>
             </AccordionPayment>

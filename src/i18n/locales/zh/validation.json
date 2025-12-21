@@ -1,0 +1,15 @@
+{
+  "required": "此字段为必填项",
+  "email": "无效的电子邮件",
+  "emailRequired": "请输入您的电子邮件！",
+  "emailInvalid": "无效的电子邮件！",
+  "minLength": "最少 {{count}} 个字符",
+  "maxLength": "最多 {{count}} 个字符",
+  "passwordMismatch": "密码和确认密码不匹配！",
+  "passwordNotMatch": "密码不匹配！",
+  "passwordMinLength": "密码至少需要 6 个字符！",
+  "confirmPasswordRequired": "请确认您的密码！",
+  "invalidFormat": "格式无效",
+  "usernameRequired": "请输入您的用户名！",
+  "passwordRequired": "请输入您的密码！"
+}

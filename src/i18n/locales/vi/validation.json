@@ -1,0 +1,15 @@
+{
+  "required": "Trường này là bắt buộc",
+  "email": "Email không hợp lệ",
+  "emailRequired": "Vui lòng nhập email!",
+  "emailInvalid": "Email không hợp lệ!",
+  "minLength": "Tối thiểu {{count}} ký tự",
+  "maxLength": "Tối đa {{count}} ký tự",
+  "passwordMismatch": "Password và Confirm Password không khớp!",
+  "passwordNotMatch": "Mật khẩu không khớp!",
+  "passwordMinLength": "Mật khẩu phải có ít nhất 6 ký tự!",
+  "confirmPasswordRequired": "Vui lòng nhập lại mật khẩu!",
+  "invalidFormat": "Định dạng không hợp lệ",
+  "usernameRequired": "Vui lòng nhập tên tài khoản!",
+  "passwordRequired": "Vui lòng nhập mật khẩu!"
+}

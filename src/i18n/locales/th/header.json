@@ -1,0 +1,22 @@
+{
+  "home": "หน้าแรก",
+  "categories": "หมวดหมู่",
+  "seasons": "ฤดูกาล",
+  "orders": "คำสั่งซื้อ",
+  "cart": "ตะกร้าสินค้า",
+  "notifications": "การแจ้งเตือน",
+  "profile": "บัญชี",
+  "searchPlaceholder": "ค้นหาสินค้า...",
+  "admin": {
+    "productManagement": "จัดการสินค้า",
+    "productList": "รายการสินค้า",
+    "addProduct": "เพิ่มสินค้า",
+    "productAttributes": "จัดการคุณลักษณะ",
+    "userManagement": "จัดการผู้ใช้",
+    "userListBanned": "รายชื่อผู้ใช้ที่ถูกแบน",
+    "userListActive": "รายชื่อผู้ใช้ที่ใช้งานอยู่",
+    "orderManagement": "จัดการคำสั่งซื้อ",
+    "invoiceManagement": "จัดการใบแจ้งหนี้",
+    "statistics": "สถิติ"
+  }
+}

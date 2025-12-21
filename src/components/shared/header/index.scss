@@ -418,7 +418,7 @@
 // ============================================
 .header-modern {
       @include flex(null, center, null, null);
-      @include box(100%, 7rem);
+      @include box(100%, 10rem);
       box-shadow: 0 2px 10px rgba(249, 115, 22, 0.1);
       transition: all 0.3s ease-in-out;
       position: fixed;

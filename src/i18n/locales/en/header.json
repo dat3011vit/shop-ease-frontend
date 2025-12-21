@@ -1,0 +1,22 @@
+{
+  "home": "Home",
+  "categories": "Categories",
+  "seasons": "Seasons",
+  "orders": "Orders",
+  "cart": "Cart",
+  "notifications": "Notifications",
+  "profile": "Account",
+  "searchPlaceholder": "Search products...",
+  "admin": {
+    "productManagement": "Product Management",
+    "productList": "Product List",
+    "addProduct": "Add Product",
+    "productAttributes": "Manage Attributes",
+    "userManagement": "User Management",
+    "userListBanned": "Banned Users List",
+    "userListActive": "Active Users List",
+    "orderManagement": "Order Management",
+    "invoiceManagement": "Invoice Management",
+    "statistics": "Statistics"
+  }
+}

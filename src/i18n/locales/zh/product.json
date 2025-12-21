@@ -1,0 +1,15 @@
+{
+  "title": "精选产品",
+  "subtitle": "探索我们最新的时尚系列",
+  "noProducts": "未找到产品",
+  "tryAgain": "请稍后再试",
+  "loading": "正在加载产品...",
+  "addToCart": "加入购物车",
+  "viewDetails": "查看详情",
+  "outOfStock": "缺货",
+  "inStock": "有货",
+  "price": "价格",
+  "sale": "促销",
+  "new": "新品",
+  "browserNotSupported": "您的浏览器不支持视频。"
+}

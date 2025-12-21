@@ -1,8 +1,57 @@
-import React, { useState } from 'react';
-import {Button, Input, Spin} from 'antd';
+import React, { useState, useEffect, useRef } from 'react';
+import {Button, Input} from 'antd';
 import {ChatApi} from "../../service/chat/chat-bot.ts";
 import {useNavigate} from "react-router-dom";
 import {path} from "@/common/constants/path.ts";
+
+// CSS cho typing cursor và animations
+const styles = `
+    .typing-cursor {
+        animation: pulse 1.5s ease-in-out infinite;
+        margin-left: 4px;
+        font-weight: bold;
+        display: inline-block;
+    }
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.4;
+            transform: scale(0.8);
+        }
+    }
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .chat-message {
+        animation: slideUp 0.3s ease-out;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #ff5722 0%, #ff7733 100%);
+    }
+`;
 
 const ChatBot = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -10,77 +59,91 @@ const ChatBot = () => {
     const [message, setMessage] = useState('');
     const [responses, setResponses] = useState([]);
     const navigate = useNavigate();
+    const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    // Auto scroll to bottom khi có message mới
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [responses]);
+
     const toggleChat = () => {
         setIsOpen(!isOpen);
     };
 
     const handleSend = async() => {
         if (message.trim()) {
+            const userMessage = message;
             const newResponse = {
-                text: message,
+                text: userMessage,
                 isUser: true,
             };
             setResponses([...responses, newResponse]);
             setMessage('');
             setIsLoading(true);
+
             try{
-                const rsp =await ChatApi.query({question:message})
-                const data =rsp?.data?.data||[]
-                let text ="Dưới đây là một số gợi ý bạn có thể tham khảo qua"
-                if((Array.isArray(data)&& data.length<1)|| !Array.isArray(data)){
-                    text="Không tìm thấy sản phẩm phù hợp!"
-                }
-                const botResponse={
-                    text,
-                    data,
+                // Thêm một response rỗng cho bot để hiển thị streaming text
+                setResponses((prev) => [...prev, {
+                    text: '',
                     isUser: false,
-                }
-                setResponses((prev) => [...prev, botResponse]);
+                    isStreaming: true,
+                }]);
+
+                // Biến tạm để lưu streaming text
+                let fullText = '';
+
+                await ChatApi.queryStream(
+                    userMessage,
+                    // onChunk: Callback khi nhận được chunk mới
+                    (chunk) => {
+                        fullText += chunk;
+                        // Cập nhật response realtime
+                        setResponses((prev) => {
+                            const newResponses = [...prev];
+                            const lastResponse = newResponses[newResponses.length - 1];
+                            if (lastResponse && lastResponse.isStreaming) {
+                                lastResponse.text = fullText;
+                            }
+                            return [...newResponses]; // Return new array để trigger re-render
+                        });
+                    },
+                    // onComplete: Callback khi streaming hoàn thành
+                    () => {
+                        // Đánh dấu streaming đã hoàn thành
+                        setResponses((prev) => {
+                            const newResponses = [...prev];
+                            const lastResponse = newResponses[newResponses.length - 1];
+                            if (lastResponse && lastResponse.isStreaming) {
+                                lastResponse.isStreaming = false;
+                            }
+                            return newResponses;
+                        });
+                        setIsLoading(false);
+                    },
+                    // onError: Callback khi có lỗi
+                    (error) => {
+                        console.error('Streaming error:', error);
+                        setResponses((prev) => {
+                            const newResponses = [...prev];
+                            const lastResponse = newResponses[newResponses.length - 1];
+                            if (lastResponse && lastResponse.isStreaming) {
+                                lastResponse.text = 'Có lỗi xảy ra, vui lòng thử lại sau!';
+                                lastResponse.isStreaming = false;
+                            }
+                            return newResponses;
+                        });
+                        setIsLoading(false);
+                    }
+                );
             }catch(e){
                 console.log(e)
                 const botResponse = {
-                    text: `Có lỗi xa ra vui lòng thử lại sau!`,
-                    isUser: false,
+                    text: `Có lỗi xảy ra vui lòng thử lại sau!`,
                     isUser: false,
                 };
                 setResponses((prev) => [...prev, botResponse]);
-            }finally {
-                setIsLoading(false); // Đặt isLoading thành false khi đã nhận được phản hồi hoặc có lỗi
+                setIsLoading(false);
             }
-
-            // setTimeout(() => {
-            //     const botResponse = {
-            //         text: `Dưới đây là một số gợi ý bạn có thể tham khảo qua`,
-            //         data:[
-            //             {
-            //
-            //                 productId:1,
-            //                 title:"\n" +
-            //                     "Áo khoác nam nữ cao cấp trơn form rộng - Casual Oversized Jacket in Black",
-            //                 img:"https://zizoou.com/cdn/shop/files/Ao-khoac-jacket-form-rong-oversize-NCC2-Black-1-1-ZiZoou-Store.jpg?v=1682699488&width=1946"
-            //             },
-            //             {
-            //
-            //                 productId:2,
-            //                 title:"Áo Sơ Mi Vải Dạ | Caro",
-            //                 img:"https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/470188001/item/vngoods_09_470188001_3x4.jpg?width=369"
-            //             },
-            //             {
-            //
-            //                 productId:3,
-            //                 title:"Mã B209: áo khoác lông nam phong cách Hàn Quốc",
-            //                 img:"https://bizweb.dktcdn.net/100/502/737/products/o1cn01qbhayr1etzj6cm6t02191623.jpg?v=1713367341023"
-            //             }, {
-            //
-            //                 productId:4,
-            //                 title:"OC078: Áo khoác vest nam cao cấp đẹp lịch lãm",
-            //                 img:"https://bizweb.dktcdn.net/100/502/737/products/o1cn01arfqnz1qmhtbldzpd2962362.jpg?v=1730691850950"
-            //             }
-            //         ],
-            //         isUser: false,
-            //     };
-            //     setResponses((prev) => [...prev, botResponse]);
-            // }, 500);
         }
     };
     const handleProductClick = (title, productId) => {
@@ -96,12 +159,34 @@ const ChatBot = () => {
     ];
 
     return (
-        <div style={{ position: 'fixed', bottom: 20, right: 20, zIndex: 1000 }}>
-            {!isOpen && (
+        <>
+            <style>{styles}</style>
+            <div style={{ position: 'fixed', bottom: 20, right: 20, zIndex: 1000 }}>
+                {!isOpen && (
                 <Button
                     type="primary"
                     onClick={toggleChat}
-                    style={{ borderRadius: '50%', width: 50, height: 50 }}
+                    style={{
+                        borderRadius: '50%',
+                        width: 60,
+                        height: 60,
+                        background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%)',
+                        border: 'none',
+                        boxShadow: '0 4px 15px rgba(255, 107, 53, 0.4)',
+                        fontSize: '24px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        transition: 'all 0.3s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'scale(1.1)';
+                        e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 107, 53, 0.6)';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 107, 53, 0.4)';
+                    }}
                 >
                     💬
                 </Button>
@@ -110,38 +195,56 @@ const ChatBot = () => {
             {isOpen && (
                 <div
                     style={{
-                        width: 300,
+                        width: 380,
                         background: '#fff',
-                        border: '1px solid #ddd',
-                        borderRadius: 10,
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+                        border: 'none',
+                        borderRadius: 20,
+                        boxShadow: '0 10px 40px rgba(0, 0, 0, 0.15)',
                         display: 'flex',
                         flexDirection: 'column',
                         flex: 1,
                         overflowY: 'auto',
-                        maxHeight: 500,
-                        minHeight: 300,
+                        maxHeight: 600,
+                        minHeight: 400,
                         height:"100%"
                     }}
                 >
                     {/* Header */}
                     <div
                         style={{
-                            background: '#1890ff',
+                            background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%)',
                             color: '#fff',
-                            padding: '10px',
-                            borderTopLeftRadius: 10,
-                            borderTopRightRadius: 10,
+                            padding: '18px 20px',
+                            borderTopLeftRadius: 20,
+                            borderTopRightRadius: 20,
                             display: 'flex',
                             justifyContent: 'space-between',
                             alignItems: 'center',
+                            boxShadow: '0 2px 10px rgba(255, 107, 53, 0.2)',
                         }}
                     >
-                        <span style={{ fontWeight: 'bold' }}>Hỗ trợ</span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <span style={{ fontSize: '20px' }}>💬</span>
+                            <div>
+                                <div style={{ fontWeight: 'bold', fontSize: '16px' }}>Trợ lý ảo ORANGEBOT</div>
+                                <div style={{ fontSize: '12px', opacity: 0.9 }}>Online • Sẵn sàng hỗ trợ</div>
+                            </div>
+                        </div>
                         <Button
                             type="text"
-                            style={{ color: '#fff' }}
+                            style={{
+                                color: '#fff',
+                                fontSize: '20px',
+                                padding: '4px 8px',
+                                transition: 'all 0.2s ease',
+                            }}
                             onClick={toggleChat}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.transform = 'rotate(90deg)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = 'rotate(0deg)';
+                            }}
                         >
                             ✖
                         </Button>
@@ -149,41 +252,53 @@ const ChatBot = () => {
 
                     {/* Nội dung chat */}
                     <div style={{flex:1}}>
-                        <Spin spinning={isLoading} tip="Đang xử lý..." size="large" style={{flex:1}}>
-                            <div
-                                style={{
-                                    padding: '10px',
-                                    flex: 1,
-                                    overflowY: 'auto',
-                                    maxHeight: 300,
-                                }}
-                            >
+                        <div
+                            style={{
+                                padding: '20px',
+                                flex: 1,
+                                overflowY: 'auto',
+                                maxHeight: 420,
+                                background: '#f8f9fa',
+                            }}
+                        >
                                 <div
                                     style={{
-                                        marginBottom: 10,
-                                        color: '#555',
-                                        fontStyle: 'italic',
+                                        marginBottom: 16,
+                                        padding: '12px 16px',
+                                        background: 'linear-gradient(135deg, #fff5f0 0%, #ffe8dc 100%)',
+                                        borderRadius: 12,
+                                        borderLeft: '4px solid #FF6B35',
+                                        color: '#333',
+                                        fontSize: '14px',
+                                        boxShadow: '0 2px 8px rgba(255, 107, 53, 0.1)',
                                     }}
                                 >
-                                    Xin chào! Orange Shop có thể hỗ trợ điều gì cho bạn?
+                                    <div style={{ fontWeight: 'bold', marginBottom: '4px', color: '#FF6B35' }}>
+                                        👋 Xin chào!
+                                    </div>
+                                    Orange Shop có thể hỗ trợ điều gì cho bạn?
                                 </div>
                                 {responses.map((item, index) => (
                                     <div
                                         key={index}
+                                        className="chat-message"
                                         style={{
                                             textAlign: item.isUser ? 'right' : 'left',
-                                            marginBottom: 10,
+                                            marginBottom: 12,
                                         }}
                                     >
                                         {item.isUser ? (
                                             <span
                                                 style={{
                                                     display: 'inline-block',
-                                                    padding: '8px 12px',
-                                                    borderRadius: 15,
-                                                    background: '#1890ff',
+                                                    padding: '10px 16px',
+                                                    borderRadius: '18px 18px 4px 18px',
+                                                    background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%)',
                                                     color: '#fff',
-                                                    maxWidth: '80%',
+                                                    maxWidth: '75%',
+                                                    fontSize: '14px',
+                                                    boxShadow: '0 2px 8px rgba(255, 107, 53, 0.25)',
+                                                    wordBreak: 'break-word',
                                                 }}
                                             >
                                         {item.text}
@@ -192,12 +307,22 @@ const ChatBot = () => {
                                             <div>
                                         <span
                                             style={{
-                                                display: 'block',
-                                                marginBottom: 5,
-                                                fontWeight: 'bold',
+                                                display: 'inline-block',
+                                                marginBottom: 8,
+                                                padding: '10px 16px',
+                                                borderRadius: '18px 18px 18px 4px',
+                                                background: '#fff',
+                                                maxWidth: '75%',
+                                                whiteSpace: 'pre-wrap',
+                                                fontSize: '14px',
+                                                color: '#2c3e50',
+                                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+                                                border: '1px solid #f0f0f0',
+                                                wordBreak: 'break-word',
                                             }}
                                         >
                                             {item.text}
+                                            {item.isStreaming && <span className="typing-cursor" style={{ color: '#FF6B35' }}>●</span>}
                                         </span>
                                                 {item?.data && Array.isArray(item.data)&&
                                                     item.data.map((product) => (
@@ -234,8 +359,8 @@ const ChatBot = () => {
                                         )}
                                     </div>
                                 ))}
-                            </div>
-                        </Spin>
+                                <div ref={messagesEndRef} />
+                        </div>
                     </div>
 
 
@@ -269,8 +394,12 @@ const ChatBot = () => {
                     <div
                         style={{
                             display: 'flex',
-                            padding: '10px',
-                            borderTop: '1px solid #ddd',
+                            padding: '16px 20px',
+                            borderTop: '1px solid #e8e8e8',
+                            background: '#fff',
+                            borderBottomLeftRadius: 20,
+                            borderBottomRightRadius: 20,
+                            gap: '10px',
                         }}
                     >
                         <Input
@@ -278,19 +407,52 @@ const ChatBot = () => {
                             onChange={(e) => setMessage(e.target.value)}
                             placeholder="Nhập tin nhắn..."
                             onPressEnter={handleSend}
-                            style={{ flex: 1, marginRight: 10 }}
+                            style={{
+                                flex: 1,
+                                borderRadius: 20,
+                                padding: '10px 16px',
+                                border: '1px solid #e8e8e8',
+                                fontSize: '14px',
+                            }}
                         />
                         <Button
                             type="primary"
                             onClick={handleSend}
-                            disabled={!message.trim() || isLoading} // Disable button nếu đang loading
+                            disabled={!message.trim()}
+                            style={{
+                                borderRadius: 20,
+                                padding: '10px 24px',
+                                height: 'auto',
+                                background: message.trim()
+                                    ? 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%)'
+                                    : '#d9d9d9',
+                                border: 'none',
+                                boxShadow: message.trim()
+                                    ? '0 2px 8px rgba(255, 107, 53, 0.3)'
+                                    : 'none',
+                                fontWeight: '500',
+                                transition: 'all 0.3s ease',
+                            }}
+                            onMouseEnter={(e) => {
+                                if (message.trim()) {
+                                    e.currentTarget.style.transform = 'translateY(-2px)';
+                                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 107, 53, 0.4)';
+                                }
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = 'translateY(0)';
+                                e.currentTarget.style.boxShadow = message.trim()
+                                    ? '0 2px 8px rgba(255, 107, 53, 0.3)'
+                                    : 'none';
+                            }}
                         >
-                            {isLoading ? <Spin /> : 'Gửi'} {/* Hiển thị loading khi isLoading */}
+                            Gửi
                         </Button>
                     </div>
                 </div>
             )}
-        </div>
+            </div>
+        </>
     );
 };
 
