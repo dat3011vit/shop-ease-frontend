@@ -51,6 +51,14 @@ const styles = `
     ::-webkit-scrollbar-thumb:hover {
         background: linear-gradient(135deg, #ff5722 0%, #ff7733 100%);
     }
+
+    /* Fix màu nút X trắng */
+    .chat-close-btn,
+    .chat-close-btn:hover,
+    .chat-close-btn:focus,
+    .chat-close-btn:active {
+        color: #fff !important;
+    }
 `;
 
 const ChatBot = () => {
@@ -232,12 +240,7 @@ const ChatBot = () => {
                         </div>
                         <Button
                             type="text"
-                            style={{
-                                color: '#fff',
-                                fontSize: '20px',
-                                padding: '4px 8px',
-                                transition: 'all 0.2s ease',
-                            }}
+                            className="chat-close-btn"
                             onClick={toggleChat}
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.transform = 'rotate(90deg)';
@@ -246,7 +249,14 @@ const ChatBot = () => {
                                 e.currentTarget.style.transform = 'rotate(0deg)';
                             }}
                         >
-                            ✖
+                            <span style={{
+                                color: '#fff',
+                                fontSize: '20px',
+                                display: 'inline-block',
+                                transition: 'all 0.2s ease',
+                            }}>
+                                ✖
+                            </span>
                         </Button>
                     </div>
 

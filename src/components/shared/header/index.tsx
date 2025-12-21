@@ -19,8 +19,9 @@ import { PopupUser } from './PopupUser.tsx';
 import PopupNotification from './PopupNotification';
 import { ERole } from '@/common/models/User.ts';
 import {Input} from "antd";
-import {SearchOutlined} from "@ant-design/icons";
+import {SearchOutlined, CameraOutlined} from "@ant-design/icons";
 import { useTranslation } from 'react-i18next';
+import ImageSearchModal from '@/components/image-search/ImageSearchModal';
 
 const HeaderComponent = () => {
     const { t } = useTranslation('header');
@@ -47,6 +48,7 @@ const HeaderComponent = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [isSearchActive, setIsSearchActive] = useState(false);
+    const [isImageSearchOpen, setIsImageSearchOpen] = useState(false);
 
     const handleToggleSearch = () => {
         setIsSearchActive((prev) => !prev);
@@ -104,6 +106,12 @@ const HeaderComponent = () => {
     const [isNoti,setIsNoti]=useState(false)
     return (
         <header className={`header-modern ${isSticky ? 'scrolled' : ''}`}>
+            {/* Image Search Modal */}
+            <ImageSearchModal
+                visible={isImageSearchOpen}
+                onClose={() => setIsImageSearchOpen(false)}
+            />
+
             {id === 'mobile-modal' ? (
                 <Modal type="left" onClose={handleCloseModal} open={openModal}>
                     <HeaderMobile onClose={handleCloseModal} />
@@ -179,6 +187,15 @@ const HeaderComponent = () => {
                                         }
                                     />
                                 </div>
+
+                                {/* Nút tìm kiếm bằng hình ảnh */}
+                                <span
+                                    className="header-modern__control--item"
+                                    onClick={() => setIsImageSearchOpen(true)}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    <CameraOutlined style={{ fontSize: '24px', color: '#f97316' }} />
+                                </span>
 
                                 {/* Desktop */}
                                 <div className="header-modern__control--cart-popup">

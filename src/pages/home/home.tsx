@@ -15,6 +15,9 @@ import ProductListV2 from "@/components/products/ProductListV2";
 import {Product} from "@/service/product/product.ts";
 import introVideo from '@/assets/videos/video-orange-intro.mp4';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store';
+import PromotionModal from '@/components/shared/PromotionModal';
 import './home.scss';
 
 const filteredProducts: TProductListResponse = dataFake;
@@ -23,6 +26,28 @@ export default function Home() {
     const [page,setPage]=useState(1);
     const [totalPage,setTotalPage]=useState(0);
     const [listProduct,setListProduct] = useState<IProduct[]>([])
+    const [showPromotionModal, setShowPromotionModal] = useState(false);
+    const { account } = useSelector((state: RootState) => state?.user);
+
+    // Hiển thị promotion modal sau khi login
+    useEffect(() => {
+        // Kiểm tra xem user đã login chưa
+        if (account) {
+            // Kiểm tra xem đã hiển thị modal trong session này chưa
+            const hasShownModal = sessionStorage.getItem('promotionModalShown');
+
+            if (!hasShownModal) {
+                // Delay 1 giây để không hiển thị quá nhanh
+                const timer = setTimeout(() => {
+                    setShowPromotionModal(true);
+                    sessionStorage.setItem('promotionModalShown', 'true');
+                }, 1000);
+
+                return () => clearTimeout(timer);
+            }
+        }
+    }, [account]);
+
     useEffect(()=>{
         (async (page,key)=>{
             try {
@@ -53,6 +78,12 @@ export default function Home() {
     console.log({listProduct})
     return (
         <div className="home-page-modern">
+            {/* Promotion Modal */}
+            <PromotionModal
+                visible={showPromotionModal}
+                onClose={() => setShowPromotionModal(false)}
+            />
+
             {/* Video ngay dưới header */}
             <div className="intro-video-container">
                 <video

@@ -1,0 +1,288 @@
+.promotion-modal {
+    .ant-modal-content {
+        padding: 0;
+        overflow: hidden;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #fff 0%, #fff5f0 100%);
+    }
+
+    .ant-modal-body {
+        padding: 0;
+    }
+}
+
+.promotion-container {
+    display: flex;
+    position: relative;
+    min-height: 600px;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        min-height: auto;
+    }
+}
+
+// Nút đóng
+.promotion-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #FF6B35;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+
+    &:hover {
+        background: #FF6B35;
+        transform: rotate(90deg);
+
+        .anticon {
+            color: white;
+        }
+    }
+
+    .anticon {
+        font-size: 18px;
+        color: #FF6B35;
+        transition: color 0.3s ease;
+    }
+}
+
+// Video section - Bên trái
+.promotion-video {
+    flex: 0 0 40%;
+    background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+        flex: 0 0 auto;
+        height: 300px;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+        animation: pulse 3s ease-in-out infinite;
+    }
+}
+
+.promotion-video-player {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    object-fit: cover;
+
+    @media (max-width: 768px) {
+        max-width: 200px;
+    }
+}
+
+// Content section - Bên phải
+.promotion-content {
+    flex: 1;
+    padding: 40px 35px;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #ffffff 0%, #fff8f5 100%);
+
+    @media (max-width: 768px) {
+        padding: 30px 20px;
+    }
+}
+
+.promotion-header {
+    margin-bottom: 25px;
+
+    .promotion-badge {
+        display: inline-block;
+        padding: 6px 16px;
+        background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+        color: white;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+    }
+
+    .promotion-title {
+        font-size: 32px;
+        font-weight: 800;
+        color: #333;
+        margin: 0;
+        background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+
+        @media (max-width: 768px) {
+            font-size: 26px;
+        }
+    }
+}
+
+.promotion-offers {
+    flex: 1;
+    margin-bottom: 25px;
+}
+
+.offer-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    margin-bottom: 12px;
+    background: white;
+    border-radius: 12px;
+    border-left: 4px solid #FF6B35;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    &:hover {
+        transform: translateX(5px);
+        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.15);
+    }
+
+    .offer-icon {
+        font-size: 28px;
+        flex-shrink: 0;
+        animation: bounce 2s ease-in-out infinite;
+    }
+
+    .offer-details {
+        flex: 1;
+
+        h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #333;
+            margin: 0 0 4px 0;
+        }
+
+        p {
+            font-size: 13px;
+            color: #666;
+            margin: 0;
+            line-height: 1.4;
+        }
+    }
+}
+
+.promotion-cta {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+.cta-button {
+    flex: 1;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    &.primary {
+        background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+        color: white;
+        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 107, 53, 0.5);
+        }
+    }
+
+    &.secondary {
+        background: white;
+        color: #FF6B35;
+        border: 2px solid #FF6B35;
+
+        &:hover {
+            background: #fff5f0;
+            transform: translateY(-2px);
+        }
+    }
+}
+
+.promotion-footer {
+    padding-top: 20px;
+    border-top: 2px dashed #ffe8dc;
+    text-align: center;
+
+    .promo-code {
+        font-size: 14px;
+        color: #666;
+        margin: 0 0 8px 0;
+
+        strong {
+            color: #FF6B35;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 4px 12px;
+            background: #fff5f0;
+            border-radius: 6px;
+            border: 1px dashed #FF6B35;
+        }
+    }
+
+    .promo-expire {
+        font-size: 12px;
+        color: #999;
+        margin: 0;
+    }
+}
+
+// Animations
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
