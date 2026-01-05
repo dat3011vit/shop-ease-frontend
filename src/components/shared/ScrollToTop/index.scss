@@ -1,0 +1,97 @@
+@import "../../../styles/abstracts/";
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.8);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    &--visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+    }
+
+    &__button {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+        border: none;
+        box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        &:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.5);
+            background: linear-gradient(135deg, #FF8C42 0%, #FF6B35 100%);
+
+            &::before {
+                opacity: 1;
+            }
+
+            .scroll-to-top__icon {
+                animation: bounceUp 0.6s ease infinite;
+            }
+        }
+
+        &:active {
+            transform: translateY(-2px) scale(1);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+    }
+
+    &__icon {
+        width: 28px;
+        height: 28px;
+        color: white;
+        transition: transform 0.3s ease;
+    }
+
+    // Mobile adjustments
+    @include breakpoint(sm) {
+        bottom: 120px;
+        right: 50px;
+
+        &__button {
+            width: 70px;
+            height: 70px;
+        }
+
+        &__icon {
+            width: 24px;
+            height: 24px;
+        }
+    }
+}
+
+@keyframes bounceUp {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}

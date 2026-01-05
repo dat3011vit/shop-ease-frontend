@@ -81127,8 +81127,8 @@ const getData = data => {
         ci.push({
             name,
             id: idCity,
-            create_at: '2024-02-11 15:01:59',
-            update_at: '2024-02-11 15:01:59',
+            create_at: '2025-02-11 15:01:59',
+            update_at: '2025-02-11 15:01:59',
         });
         for (let i = 0; i < districs.length; i++) {
             let idDistric = districs[i].code;
@@ -81139,8 +81139,8 @@ const getData = data => {
                 city_id,
                 name,
                 id: idDistric,
-                create_at: '2024-02-11 15:01:59',
-                update_at: '2024-02-11 15:01:59',
+                create_at: '2025-02-11 15:01:59',
+                update_at: '2025-02-11 15:01:59',
             });
             for (let j = 0; j < wards.length; j++) {
                 let ward = wards[j].code;
@@ -81150,8 +81150,8 @@ const getData = data => {
                     district_id: distric_id,
                     name,
                     id: ward,
-                    create_at: '2024-02-11 15:01:59',
-                    update_at: '2024-02-11 15:01:59',
+                    create_at: '2025-02-11 15:01:59',
+                    update_at: '2025-02-11 15:01:59',
                 });
             }
         }

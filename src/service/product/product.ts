@@ -8,7 +8,7 @@ const Product={
     searchListProduct:async(params)=>{
         return await API.get<any>(
             SERVER.product.url,
-            `product/find`,
+            `product-elk/find`,
             params,
             true,
         )

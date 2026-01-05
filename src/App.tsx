@@ -17,6 +17,7 @@ import {path} from "./common/constants/path.ts";
 import {useNavigate} from "react-router-dom";
 import {fetchListAddress} from "./store/address-slice.ts";
 import { ConfigProvider } from 'antd';
+import ScrollToTop from './components/shared/ScrollToTop';
 function App() {
     // Trạng thái để theo dõi lần đầu chạy
     const [isInitialized, setIsInitialized] = useState(false);
@@ -153,6 +154,7 @@ function App() {
             <div>
                 <Router />
                 <ToastContainer />
+                <ScrollToTop />
             </div>
         </ConfigProvider>
     );

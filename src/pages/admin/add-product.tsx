@@ -69,24 +69,22 @@ const AddProduct: React.FC = () => {
       }));
 
       const payload = {
-        ...values,
+        title: values.title,
+        price: Number(values.price),
+        label: values?.label?.trim()?.split(/\s*,\s*/) || [],
+        season_id: values.season,
+        category: values.category,
+        description: JSON.stringify(values?.description?.split("\n")),
         images,
         csq: Object.entries(selectedColors).flatMap(([color, sizes]) => {
-          console.log("nau",sizes)
-              return Object.entries(sizes).map(([size, quantity]) => ({
-                color:colorOptions?.find(item=>item.id===quantity.color_id)?.value ,
-                // size: quantity.size_id,
-                code: colorOptions?.find(item=>item.id===quantity.color_id)?.code ,
-                quantity: quantity.stock,
-              }))
-            }
-        ),
-        description: JSON.stringify(values?.description?.split("\n")),
-        label:(values?.label?.trim()?.split(/\s*,\s*/))||[],
-        season_id:values?.season,
-        title:values?.title,
-        price:values.price,
-        category:values.category,
+          console.log("nau", sizes);
+          return Object.entries(sizes).map(([size, quantity]) => ({
+            color: colorOptions?.find(item => item.id === quantity.color_id)?.value,
+            size: quantity.size_id,
+            code: colorOptions?.find(item => item.id === quantity.color_id)?.code,
+            quantity: quantity.stock,
+          }));
+        }),
       };
 
       await createProduct(payload);

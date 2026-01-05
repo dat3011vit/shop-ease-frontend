@@ -15,8 +15,9 @@ import ProductListV2 from "@/components/products/ProductListV2";
 import {Product} from "@/service/product/product.ts";
 import introVideo from '@/assets/videos/video-orange-intro.mp4';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/store';
+import { setHasSeenPromotion } from '@/store/user-slice';
 import PromotionModal from '@/components/shared/PromotionModal';
 import './home.scss';
 
@@ -27,26 +28,23 @@ export default function Home() {
     const [totalPage,setTotalPage]=useState(0);
     const [listProduct,setListProduct] = useState<IProduct[]>([])
     const [showPromotionModal, setShowPromotionModal] = useState(false);
-    const { account } = useSelector((state: RootState) => state?.user);
+    const dispatch = useDispatch();
+    const { account, hasSeenPromotion } = useSelector((state: RootState) => state?.user);
 
-    // Hiển thị promotion modal sau khi login
+    // Hiển thị promotion modal mỗi khi login thành công
     useEffect(() => {
-        // Kiểm tra xem user đã login chưa
-        if (account) {
-            // Kiểm tra xem đã hiển thị modal trong session này chưa
-            const hasShownModal = sessionStorage.getItem('promotionModalShown');
+        // Chỉ hiển thị khi: đã login VÀ chưa xem promotion trong lần login này
+        if (account && !hasSeenPromotion) {
+            // Delay 1 giây để không hiển thị quá nhanh
+            const timer = setTimeout(() => {
+                setShowPromotionModal(true);
+                // Đánh dấu đã xem promotion
+                dispatch(setHasSeenPromotion(true));
+            }, 1000);
 
-            if (!hasShownModal) {
-                // Delay 1 giây để không hiển thị quá nhanh
-                const timer = setTimeout(() => {
-                    setShowPromotionModal(true);
-                    sessionStorage.setItem('promotionModalShown', 'true');
-                }, 1000);
-
-                return () => clearTimeout(timer);
-            }
+            return () => clearTimeout(timer);
         }
-    }, [account]);
+    }, [account, hasSeenPromotion, dispatch]);
 
     useEffect(()=>{
         (async (page,key)=>{

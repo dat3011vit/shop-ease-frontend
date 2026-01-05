@@ -76,8 +76,8 @@ const Orders: React.FC = () => {
                 total: 208000,
                 status: "Chờ xác nhận",
                 buyer: "Nguyễn Văn A",
-                orderTime: "19/11/2024, 10:30",
-                statusTime: "20/11/2024, 10:30",
+                orderTime: "19/11/2025, 10:30",
+                statusTime: "20/11/2025, 10:30",
                 address: "123 Đường ABC, Hà Nội"
             },
             {
@@ -96,8 +96,8 @@ const Orders: React.FC = () => {
                 total: 108000,
                 status: "Chờ xác nhận",
                 buyer: "Nguyễn Văn B",
-                orderTime: "19/11/2024, 11:00",
-                statusTime: "20/11/2024, 11:00",
+                orderTime: "19/11/2025, 11:00",
+                statusTime: "20/11/2025, 11:00",
                 address: "456 Đường XYZ, Hà Nội"
             },
         ],
@@ -118,8 +118,8 @@ const Orders: React.FC = () => {
                 total: 180000,
                 status: "Chờ vận chuyển",
                 buyer: "Trần Thị B",
-                orderTime: "20/11/2024, 13:30",
-                statusTime: "21/11/2024, 13:30",
+                orderTime: "20/11/2025, 13:30",
+                statusTime: "21/11/2025, 13:30",
                 address: "789 Đường PQR, Đà Nẵng"
             },
         ],
@@ -140,8 +140,8 @@ const Orders: React.FC = () => {
                 total: 500000,
                 status: "Đang giao",
                 buyer: "Vũ Thị E",
-                orderTime: "22/11/2024, 10:45",
-                statusTime: "23/11/2024, 10:45",
+                orderTime: "22/11/2025, 10:45",
+                statusTime: "23/11/2025, 10:45",
                 address: "202 Đường MNO, Hà Nội"
             },
         ],
@@ -162,8 +162,8 @@ const Orders: React.FC = () => {
                 total: 300000,
                 status: "Giao thành công",
                 buyer: "Trần Thị F",
-                orderTime: "22/11/2024, 09:00",
-                statusTime: "25/11/2024, 09:00",
+                orderTime: "22/11/2025, 09:00",
+                statusTime: "25/11/2025, 09:00",
                 address: "303 Đường DEF, TP.HCM"
             },
             {
@@ -182,8 +182,8 @@ const Orders: React.FC = () => {
                 total: 300000,
                 status: "Giao thành công",
                 buyer: "Trần Thị F",
-                orderTime: "10/11/2024, 09:00",
-                statusTime: "15/11/2024, 09:00",
+                orderTime: "10/11/2025, 09:00",
+                statusTime: "15/11/2025, 09:00",
                 address: "303 Đường DEF, TP.HCM"
             },
         ],
@@ -204,8 +204,8 @@ const Orders: React.FC = () => {
                 total: 500000,
                 status: "Đang hoàn",
                 buyer: "Lê Thị I",
-                orderTime: "15/11/2024, 14:30",
-                statusTime: "17/11/2024, 14:30",
+                orderTime: "15/11/2025, 14:30",
+                statusTime: "17/11/2025, 14:30",
                 address: "808 Đường XYZ, Hà Nội"
             },
         ],
@@ -227,8 +227,8 @@ const Orders: React.FC = () => {
                 total: 350000,
                 status: "Đã hủy",
                 buyer: "Hoàng Thị G",
-                orderTime: "25/11/2024, 12:00",
-                statusTime: "26/11/2024, 12:00",
+                orderTime: "25/11/2025, 12:00",
+                statusTime: "26/11/2025, 12:00",
                 address: "404 Đường UVW, Hà Nội"
             },
         ],
@@ -249,8 +249,8 @@ const Orders: React.FC = () => {
                 total: 400000,
                 status: "Đã hoàn",
                 buyer: "Phan Thị H",
-                orderTime: "26/11/2024, 08:30",
-                statusTime: "26/11/2024, 08:30",
+                orderTime: "26/11/2025, 08:30",
+                statusTime: "26/11/2025, 08:30",
                 address: "505 Đường KLM, Đà Nẵng"
             },
         ],

@@ -72,7 +72,7 @@ const Collection = () => {
         // Kiểm tra nếu query parameters "page" hoặc "limit" không tồn tại trong URL
         if (!searchParams.has("page")) {
             // Nếu không có "page", đặt mặc định là 1
-            searchParams.set("page", "1");
+            searchParams.set("page", "0");
         }
 
         if (!searchParams.has("limit")) {
@@ -142,28 +142,34 @@ const Collection = () => {
 
             <Container>
                 <div className="search-page-modern__content">
-                    <div className="search-page-modern__filters">
-                        <h3 className="search-page-modern__filters-title">
-                            <Icon icon="solar:filter-bold-duotone" />
-                            Bộ Lọc
-                        </h3>
-                        <div className="search-page-modern__filters-content">
-                            <FilterOptionCheckbox title="Màu sắc" category="color" options={COLOR_FILTERS.options} />
-                            <FilterOptionCheckbox title="Kích thước" category="size" options={SIZE_FILTERS.options} />
-                            <FilterRange min={'0'} max={'500000'} step={1} title="Khoảng giá" />
-                            <FilterOptionRadioBox title="Sắp xếp theo" options={SORT_FILED_FILTERS.options} />
-                            <FilterOptionRadioBox title="Thứ tự" options={SORT_TYPE_FILTERS.options} />
+                    <aside className="search-page-modern__filters">
+                        <div className="search-page-modern__filters-header">
+                            <h3 className="search-page-modern__filters-title">
+                                <Icon icon="solar:filter-bold-duotone" />
+                                Bộ Lọc
+                            </h3>
                             <Button
                                 className="search-page-modern__reset-btn"
                                 size="sm"
                                 variant="contain"
                                 color="black"
+                                onClick={() => {
+                                    setSearchParams({ page: '1', limit: '10' });
+                                }}
                             >
                                 <Icon icon="solar:refresh-bold" />
                                 Đặt lại
                             </Button>
                         </div>
-                    </div>
+                        <div className="search-page-modern__filters-content">
+                            <FilterOptionCheckbox title="Màu sắc" category="color" options={COLOR_FILTERS.options} />
+                            <FilterOptionCheckbox title="Kích thước" category="size" options={SIZE_FILTERS.options} />
+                            <FilterRange min={'0'} max={'500000'} step={1000} title="Khoảng giá" />
+                            <FilterOptionRadioBox title="Sắp xếp theo" category="sortField" options={SORT_FILED_FILTERS.options} />
+                            <FilterOptionRadioBox title="Thứ tự" category="sortType" options={SORT_TYPE_FILTERS.options} />
+                        </div>
+                    </aside>
+                    <div className="search-page-modern__main">
                         {isLoading ? (
                             <div className="search-page-modern__loading">
                                 <Skeleton count={9} height={400} />
@@ -208,6 +214,7 @@ const Collection = () => {
                                 </>
                             )
                         )}
+                    </div>
                 </div>
             </Container>
         </div>

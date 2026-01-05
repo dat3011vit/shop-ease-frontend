@@ -32,6 +32,36 @@ const styles = `
             transform: translateY(0);
         }
     }
+    @keyframes chatbotBounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0) scale(1);
+        }
+        40% {
+            transform: translateY(-15px) scale(1.05);
+        }
+        60% {
+            transform: translateY(-8px) scale(1.02);
+        }
+    }
+    @keyframes chatbotPulse {
+        0% {
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4), 0 0 0 0 rgba(255, 107, 53, 0.7);
+        }
+        50% {
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4), 0 0 0 10px rgba(255, 107, 53, 0);
+        }
+        100% {
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4), 0 0 0 0 rgba(255, 107, 53, 0);
+        }
+    }
+    .chatbot-toggle-btn {
+        animation: chatbotBounce 2s ease-in-out infinite, chatbotPulse 2s ease-in-out infinite;
+        overflow: visible !important;
+    }
+    .chatbot-toggle-btn::before,
+    .chatbot-toggle-btn::after {
+        display: none !important;
+    }
     .chat-message {
         animation: slideUp 0.3s ease-out;
     }
@@ -173,6 +203,7 @@ const ChatBot = () => {
                 {!isOpen && (
                 <Button
                     type="primary"
+                    className="chatbot-toggle-btn"
                     onClick={toggleChat}
                     style={{
                         borderRadius: '50%',
@@ -180,7 +211,6 @@ const ChatBot = () => {
                         height: 60,
                         background: 'linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%)',
                         border: 'none',
-                        boxShadow: '0 4px 15px rgba(255, 107, 53, 0.4)',
                         fontSize: '24px',
                         display: 'flex',
                         alignItems: 'center',
@@ -188,12 +218,14 @@ const ChatBot = () => {
                         transition: 'all 0.3s ease',
                     }}
                     onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'scale(1.1)';
-                        e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 107, 53, 0.6)';
+                        e.currentTarget.style.animation = 'none';
+                        e.currentTarget.style.transform = 'scale(1.15)';
+                        e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 107, 53, 0.6)';
                     }}
                     onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'scale(1)';
-                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 107, 53, 0.4)';
+                        e.currentTarget.style.animation = 'chatbotBounce 2s ease-in-out infinite, chatbotPulse 2s ease-in-out infinite';
+                        e.currentTarget.style.transform = '';
+                        e.currentTarget.style.boxShadow = '';
                     }}
                 >
                     💬

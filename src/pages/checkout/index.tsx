@@ -125,7 +125,7 @@ const CheckoutPage = () => {
                 address_name:`${addressReseve?.direction}, ${addressReseve?.street}`,
                 products:listOrder
             }
-           const rsp = OrderApi.create(body);
+            const rsp = await OrderApi.create(body);
             toast.success("Bạn đã đặt hàng thành công, vui lòng thanh toán trong vòng 2 ngay")
             navigate("/orders/")
         }catch(e){

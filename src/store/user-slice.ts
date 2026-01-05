@@ -6,11 +6,13 @@ interface UserState {
     user: IUser | null;
     role: ERole | null;
     account:IAccount | null;
+    hasSeenPromotion: boolean;
 }
 const initialState: UserState = {
     user: null,
     role: null, //Role.CUSTOMER
     account:null,
+    hasSeenPromotion: false,
 };
 export const fetchUser = createAsyncThunk(
     'user/fetchUser',
@@ -46,6 +48,12 @@ export const userSlice = createSlice({
         setAccount: (state: UserState, action: PayloadAction<IAccount | null>) => {
             state.account = action.payload;
         },
+        setHasSeenPromotion: (state: UserState, action: PayloadAction<boolean>) => {
+            state.hasSeenPromotion = action.payload;
+        },
+        resetPromotionFlag: (state: UserState) => {
+            state.hasSeenPromotion = false;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -59,19 +67,23 @@ export const userSlice = createSlice({
                     state.user = action.payload?.data?.account?.user || null
                     state.account = action.payload?.data?.account || null
                     state.role = action.payload?.data?.account?.role?.name || null
+                    // Reset promotion flag khi login thành công
+                    state.hasSeenPromotion = false
 
                 } else {
                     state.user = null
                     state.account = null
                     state.role = null
+                    state.hasSeenPromotion = false
                 }
             })
             .addCase(fetchUser.rejected, (state) => {
                 state.user = null
                 state.account = null
                 state.role = null
+                state.hasSeenPromotion = false
             })
     }
 });
-export const { setUser, setRole,setAccount } = userSlice.actions;
+export const { setUser, setRole, setAccount, setHasSeenPromotion, resetPromotionFlag } = userSlice.actions;
 export default userSlice.reducer;

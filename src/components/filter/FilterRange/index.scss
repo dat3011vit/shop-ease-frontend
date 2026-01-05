@@ -1,8 +1,8 @@
 @import "../../../styles/abstracts/";
 
 .filter-range {
-      padding: 1.2rem 0;
-      border-bottom: 1px solid rgba($gold-200, 0.2);
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 140, 66, 0.15);
       @include flex(null, start, column, null);
 
       &:last-child {
@@ -11,9 +11,11 @@
       }
 
       h3 {
-            @include text(1.3rem, 600, $gold-700, 1.6rem);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #FF6B35;
             margin-bottom: 0.8rem;
-            color: $gold-700;
+            line-height: 1.4;
       }
 
       &__slider {
@@ -23,13 +25,13 @@
             // Style cho rc-slider
             .rc-slider {
                   &-rail {
-                        background-color: rgba($gold-200, 0.4);
+                        background-color: rgba(255, 140, 66, 0.2);
                         height: 4px;
                         border-radius: 2px;
                   }
 
                   &-track {
-                        background: $gold-600;
+                        background: linear-gradient(90deg, #FF6B35 0%, #FF8C42 100%);
                         height: 4px;
                         border-radius: 2px;
                   }
@@ -39,22 +41,22 @@
                         height: 16px;
                         margin-top: -6px;
                         background: #ffffff;
-                        border: 2px solid $gold-600;
-                        box-shadow: 0 1px 3px rgba(249, 115, 22, 0.3);
+                        border: 2px solid #FF6B35;
+                        box-shadow: 0 1px 3px rgba(255, 107, 53, 0.3);
                         transition: all 0.15s ease;
 
                         &:hover, &:active {
-                              border-color: $gold-700;
-                              box-shadow: 0 2px 6px rgba(249, 115, 22, 0.4);
+                              border-color: #FF8C42;
+                              box-shadow: 0 2px 6px rgba(255, 107, 53, 0.4);
                               transform: scale(1.05);
                         }
                   }
 
                   &-dot {
-                        border-color: rgba($gold-300, 0.4);
+                        border-color: rgba(255, 140, 66, 0.3);
 
                         &-active {
-                              border-color: $gold-600;
+                              border-color: #FF6B35;
                         }
                   }
             }
@@ -78,15 +80,15 @@
                   appearance: none;
                   background-color: $white;
                   border-radius: 99999px;
-                  border: 0.2rem solid $gold-600;
+                  border: 0.2rem solid #FF6B35;
                   @include box(1.6rem, 1.6rem);
                   cursor: pointer;
-                  box-shadow: 0 2px 4px rgba(249, 115, 22, 0.2);
+                  box-shadow: 0 2px 4px rgba(255, 107, 53, 0.2);
                   transition: all 0.2s ease;
 
                   &:hover {
-                        border-color: $gold-700;
-                        box-shadow: 0 2px 6px rgba(249, 115, 22, 0.3);
+                        border-color: #FF8C42;
+                        box-shadow: 0 2px 6px rgba(255, 107, 53, 0.3);
                   }
             }
       }
@@ -109,25 +111,25 @@
       &__value {
             margin-top: 0;
             border-radius: 6px;
-            border: 1px solid rgba($gold-300, 0.4);
+            border: 1px solid rgba(255, 140, 66, 0.3);
             position: relative;
             background: #ffffff;
             transition: all 0.15s ease;
 
             &:focus-within {
-                  border-color: $gold-600;
-                  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.08);
+                  border-color: #FF6B35;
+                  box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.08);
             }
 
             svg {
                   @include position(absolute, 50%, 0.8rem, 0, null);
                   transform: translateY(-50%);
-                  color: $gold-600;
+                  color: #FF6B35;
                   font-size: 1.3rem;
             }
 
             input {
-                  padding: 0.6rem 0.8rem 0.6rem 2.8rem;
+                  padding: 0.5rem 0.6rem 0.5rem 2.6rem;
                   border: none;
                   outline: none;
                   width: 100%;

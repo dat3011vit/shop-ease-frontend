@@ -6,22 +6,31 @@
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     height: 100%;
     display: flex;
     flex-direction: column;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.8);
-    margin: 0; // Đảm bảo không có margin gây overlap
+    margin: 0;
 
     &:hover {
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-        border-color: rgba($gold-600, 0.3);
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(255, 107, 53, 0.25);
+        border-color: rgba(#FF6B35, 0.5);
 
         .product-card-modern__overlay {
             opacity: 1;
             visibility: visible;
+        }
+
+        .product-card-modern__image {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .product-card-modern__title {
+            color: #FF6B35;
         }
     }
 

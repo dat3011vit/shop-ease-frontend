@@ -5,12 +5,12 @@ import {Button} from "antd";
 
 // Dữ liệu giả lập (thay thế API thực tế)
 const fakeApiData = [
-    { date: '2024-11-01', customerId: 'C001', customerName: 'Nguyễn Văn A', orderId: 'O001', revenue: 500 },
-    { date: '2024-11-02', customerId: 'C002', customerName: 'Trần Thị B', orderId: 'O002', revenue: 400 },
-    { date: '2024-11-03', customerId: 'C003', customerName: 'Lê Minh C', orderId: 'O003', revenue: 700 },
-    { date: '2024-10-25', customerId: 'C004', customerName: 'Phạm Tuấn D', orderId: 'O004', revenue: 300 },
-    { date: '2024-10-30', customerId: 'C005', customerName: 'Hoàng Thị E', orderId: 'O005', revenue: 200 },
-    { date: '2024-09-15', customerId: 'C006', customerName: 'Nguyễn Thanh F', orderId: 'O006', revenue: 800 },
+    { date: '2025-11-01', customerId: 'C001', customerName: 'Nguyễn Văn A', orderId: 'O001', revenue: 500 },
+    { date: '2025-11-02', customerId: 'C002', customerName: 'Trần Thị B', orderId: 'O002', revenue: 400 },
+    { date: '2025-11-03', customerId: 'C003', customerName: 'Lê Minh C', orderId: 'O003', revenue: 700 },
+    { date: '2025-10-25', customerId: 'C004', customerName: 'Phạm Tuấn D', orderId: 'O004', revenue: 300 },
+    { date: '2025-10-30', customerId: 'C005', customerName: 'Hoàng Thị E', orderId: 'O005', revenue: 200 },
+    { date: '2025-09-15', customerId: 'C006', customerName: 'Nguyễn Thanh F', orderId: 'O006', revenue: 800 },
 ];
 
 const Statistics: React.FC = () => {

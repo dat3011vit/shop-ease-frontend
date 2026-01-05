@@ -44,7 +44,7 @@ const PromotionModal: React.FC<PromotionModalProps> = ({ visible, onClose }) => 
                 <div className="promotion-content">
                     <div className="promotion-header">
                         <span className="promotion-badge">🎉 Ưu Đãi Đặc Biệt</span>
-                        <h2 className="promotion-title">Chào Mừng Trở Lại!</h2>
+                        <h2 className="promotion-title">Chào Mừng Tới ORANGE!</h2>
                     </div>
 
                     <div className="promotion-offers">
@@ -92,9 +92,8 @@ const PromotionModal: React.FC<PromotionModalProps> = ({ visible, onClose }) => 
 
                     <div className="promotion-footer">
                         <p className="promo-code">
-                            Mã: <strong>WELCOME20</strong> - Sao chép ngay!
+                            Mã: <strong>WELCOMEORANGE20</strong> - Sao chép ngay!
                         </p>
-                        <p className="promo-expire">⏰ Ưu đãi có hạn đến hết tháng</p>
                     </div>
                 </div>
             </div>
