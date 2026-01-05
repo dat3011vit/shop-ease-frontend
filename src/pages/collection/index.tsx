@@ -1,42 +1,42 @@
-import { useProduct } from '../../../hooks/useProduct';
+// import { useProduct } from '../../../hooks/useProduct';
 
-const COLOR_FILTERS = {
-    id: 'color',
-    name: 'Color',
-    options: [
-        { value: 'white', label: 'White' },
-        { value: 'beige', label: 'Beige' },
-        { value: 'blue', label: 'Blue' },
-        { value: 'green', label: 'Green' },
-        { value: 'purple', label: 'Purple' },
-    ],
-};
-const SIZE_FILTERS = {
-    id: 'size',
-    name: 'Size',
-    options: [
-        { value: 'S', label: 'S' },
-        { value: 'M', label: 'M' },
-        { value: 'L', label: 'L' },
-    ],
-};
-const SORT_FILED_FILTERS = {
-    id: 'sortField',
-    name: 'sortField',
-    options: [
-        { value: 'name', label: 'Name' },
-        { value: 'price', label: 'Price' },
-    ],
-};
-const SORT_TYPE_FILTERS = {
-    id: 'sortType',
-    name: 'sortType',
-    options: [
-        { value: '1', label: 'Ascending' },
-        { value: '-1', label: 'Descending' },
-    ],
-};
-import { Button, Pagination } from '@/components/ui';
+// const COLOR_FILTERS = {
+//     id: 'color',
+//     name: 'Color',
+//     options: [
+//         { value: 'white', label: 'White' },
+//         { value: 'beige', label: 'Beige' },
+//         { value: 'blue', label: 'Blue' },
+//         { value: 'green', label: 'Green' },
+//         { value: 'purple', label: 'Purple' },
+//     ],
+// };
+// const SIZE_FILTERS = {
+//     id: 'size',
+//     name: 'Size',
+//     options: [
+//         { value: 'S', label: 'S' },
+//         { value: 'M', label: 'M' },
+//         { value: 'L', label: 'L' },
+//     ],
+// };
+// const SORT_FILED_FILTERS = {
+//     id: 'sortField',
+//     name: 'sortField',
+//     options: [
+//         { value: 'name', label: 'Name' },
+//         { value: 'price', label: 'Price' },
+//     ],
+// };
+// const SORT_TYPE_FILTERS = {
+//     id: 'sortType',
+//     name: 'sortType',
+//     options: [
+//         { value: '1', label: 'Ascending' },
+//         { value: '-1', label: 'Descending' },
+//     ],
+// };
+import { Pagination } from '@/components/ui';
 // import ProductList from "../ProductList";
 
 import './index.scss';
@@ -44,11 +44,11 @@ import Skeleton from 'react-loading-skeleton';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
 import { Container } from '../../components/shared';
-import { TProductListResponse } from '@/common/models/Product';
+// import { TProductListResponse } from '@/common/models/Product';
 import Breadcrumb from '@/components/ui/Breadcrumb';
-import FilterOptionCheckbox from '@/components/filter/FilterCheckbox';
-import FilterRange from '@/components/filter/FilterRange';
-import FilterOptionRadioBox from '@/components/filter/FilterRadioBox';
+// import FilterOptionCheckbox from '@/components/filter/FilterCheckbox';
+// import FilterRange from '@/components/filter/FilterRange';
+// import FilterOptionRadioBox from '@/components/filter/FilterRadioBox';
 import ProductList from '@/components/products/ProductList';
 import { dataFake } from '@/utils/datafake';
 import {useSearchParams} from "react-router-dom";
@@ -142,7 +142,7 @@ const Collection = () => {
 
             <Container>
                 <div className="search-page-modern__content">
-                    <aside className="search-page-modern__filters">
+                    {/* <aside className="search-page-modern__filters">
                         <div className="search-page-modern__filters-header">
                             <h3 className="search-page-modern__filters-title">
                                 <Icon icon="solar:filter-bold-duotone" />
@@ -168,7 +168,7 @@ const Collection = () => {
                             <FilterOptionRadioBox title="Sắp xếp theo" category="sortField" options={SORT_FILED_FILTERS.options} />
                             <FilterOptionRadioBox title="Thứ tự" category="sortType" options={SORT_TYPE_FILTERS.options} />
                         </div>
-                    </aside>
+                    </aside> */}
                     <div className="search-page-modern__main">
                         {isLoading ? (
                             <div className="search-page-modern__loading">
