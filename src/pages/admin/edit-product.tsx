@@ -57,7 +57,7 @@ type SizeQuantityMap = { [size: string]: { stock:number;color_id:number;size_id:
 type SelectedColors = { [color: string]: SizeQuantityMap };  // Dựng đối tượng màu và các kích thước cho màu đó
 
 const EditProduct: React.FC = () => {
-  const { sizes:sizeOptions,colors:colorOptions,categories:categoryOptions, seasons:seasonOptions}= useSelector((state:RootState)=>state.attribute)
+  const { sizes:sizeOptions,colors:colorOptions,categories:categoryOptions, seasons:seasonOptions, labels:labelOptions}= useSelector((state:RootState)=>state.attribute)
   const { id } = useParams(); // Lấy id từ URL
   console.log("ID:", id);
   const [form] = Form.useForm();
@@ -115,7 +115,7 @@ const EditProduct: React.FC = () => {
          price: product.price,
          season_id: product.season_id,
          category: product.category,
-         label:Array.isArray(product?.label)?product?.label?.join(', '):'',
+         label: Array.isArray(product?.label) ? product?.label : [],
          description: formatDescription(jsonString(product.description)),
          sale: product?.sale||0,
          hagtag: product.hagtag,
@@ -226,7 +226,7 @@ const EditProduct: React.FC = () => {
             }
         ),
         description: JSON.stringify(values?.description?.split("\n")),
-        label:(values?.label?.trim()?.split(/\s*,\s*/))||[],
+        label: values?.label || [],
         season_id:values?.season_id,
         title:values?.title,
         price:values.price,
@@ -370,7 +370,6 @@ const EditProduct: React.FC = () => {
               </div>
             </div>
           </div>
-
           {/* Phần thông tin sản phẩm */}
           <div className="w-1/2 px-5">
             {/*<Form.Item label="Mã sản phẩm" name="code" >*/}
@@ -382,14 +381,20 @@ const EditProduct: React.FC = () => {
             <Form.Item label="Giá sản phẩm" name="price" rules={[{ required: true, message: "Vui lòng nhập giá sản phẩm!" }]}>
               <Input type="number" />
             </Form.Item>
-            <Form.Item label="Giảm giá" name="sale">
-              <Input type="number" />
-            </Form.Item>
+            {/* <Form.Item label="Giảm giá" name="sale"> */}
+              {/* <Input type="number" /> */}
+            {/* </Form.Item> */}
             {/*<Form.Item label="Hagtag" name="hagtag" rules={[{ required: true, message: "Vui lòng nhập hagtag!" }]}>*/}
             {/*  <Input />*/}
             {/*</Form.Item>*/}
-            <Form.Item label="Label" name="label" rules={[{ required: true, message: "Vui lòng nhập label!" }]}>
-              <Input />
+            <Form.Item label="Label" name="label" rules={[{ required: true, message: "Vui lòng chọn label!" }]}>
+              <Select mode="multiple" placeholder="Chọn labels">
+                {labelOptions.map((label) => (
+                  <Option key={label.id} value={label.name}>
+                    {label.name}
+                  </Option>
+                ))}
+              </Select>
             </Form.Item>
             <Form.Item
                 label="Mùa"

@@ -13,7 +13,7 @@ type SelectedColors = { [color: string]: SizeQuantityMap };
 
 
 const AddProduct: React.FC = () => {
-  const { sizes: sizeOptions, colors: colorOptions, categories: categoryOptions, seasons: seasonOptions } = useSelector(
+  const { sizes: sizeOptions, colors: colorOptions, categories: categoryOptions, seasons: seasonOptions, labels: labelOptions } = useSelector(
       (state: RootState) => state.attribute
   );
   const [form] = Form.useForm();
@@ -71,7 +71,7 @@ const AddProduct: React.FC = () => {
       const payload = {
         title: values.title,
         price: Number(values.price),
-        label: values?.label?.trim()?.split(/\s*,\s*/) || [],
+        label: values?.label || [],
         season_id: values.season,
         category: values.category,
         description: JSON.stringify(values?.description?.split("\n")),
@@ -80,7 +80,7 @@ const AddProduct: React.FC = () => {
           console.log("nau", sizes);
           return Object.entries(sizes).map(([size, quantity]) => ({
             color: colorOptions?.find(item => item.id === quantity.color_id)?.value,
-            size: quantity.size_id,
+            size: sizeOptions?.find(item => item.id === quantity.size_id)?.value,
             code: colorOptions?.find(item => item.id === quantity.color_id)?.code,
             quantity: quantity.stock,
           }));
@@ -221,8 +221,14 @@ const AddProduct: React.FC = () => {
             {/*<Form.Item label="Khuyến mãi (%)" name="discount">*/}
             {/*  <Input type="number" placeholder="Nhập tỷ lệ khuyến mãi" />*/}
             {/*</Form.Item>*/}
-            <Form.Item label="Label" name="label" rules={[{ required: true, message: "Vui lòng nhập label!" }]}>
-              <Input />
+            <Form.Item label="Label" name="label" rules={[{ required: true, message: "Vui lòng chọn label!" }]}>
+              <Select mode="multiple" placeholder="Chọn labels">
+                {labelOptions.map((label) => (
+                  <Option key={label.id} value={label.name}>
+                    {label.name}
+                  </Option>
+                ))}
+              </Select>
             </Form.Item>
             <Form.Item
                 label="Mùa"

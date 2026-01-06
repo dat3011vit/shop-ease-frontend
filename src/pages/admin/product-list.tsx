@@ -60,7 +60,7 @@ const AdminProductList: React.FC = () => {
         if(key?.length>0 ){
           params={...params,key}
         }
-        const response = await Product.searchListProduct(params)
+        const response = await Product.searchListProduct(params, true)
         console.log("product: ", response)
         if(response.data.isSuccess===true){
           if(response.data?.data){

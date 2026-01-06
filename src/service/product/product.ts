@@ -5,10 +5,11 @@ import {IAddress} from "./getListProduct.ts";
 
 
 const Product={
-    searchListProduct:async(params)=>{
+    searchListProduct:async(params, isAdmin = false)=>{
+        const endpoint = isAdmin ? 'product/find' : 'product-elk/find';
         return await API.get<any>(
             SERVER.product.url,
-            `product-elk/find`,
+            endpoint,
             params,
             true,
         )

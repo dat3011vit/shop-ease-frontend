@@ -3,6 +3,7 @@ import {Category, ICategory} from "@/service/attributes/category.ts";
 import {Color, IColor} from "@/service/attributes/color.ts";
 import {ISeason, Season} from "@/service/attributes/Season.ts";
 import {ISize, Size} from "@/service/attributes/size.ts";
+import {ILabel, Label} from "@/service/attributes/label.ts";
 
 export const fetchCategory = createAsyncThunk(
     'category/fetchCategory',
@@ -69,12 +70,30 @@ export const fetchSize = createAsyncThunk(
     }
 );
 
+export const fetchLabel = createAsyncThunk(
+    'label/fetchLabel',
+    async () => {
+        try {
+            const response = await Label.getAll();
+            if (response?.data?.isSuccess) {
+                return response?.data;
+            } else {
+                return response?.data;
+            }
+        } catch (error) {
+            console.log(error)
+            return null;
+        }
+    }
+);
+
 // Initial state
 const initialState: {
     sizes:ISize[];
     categories:ICategory[];
     seasons:ISeason[];
     colors:IColor[];
+    labels:ILabel[];
     msg: string;
     loading: boolean;
 } = {
@@ -82,6 +101,7 @@ const initialState: {
     categories:[],
     seasons:[],
     colors:[],
+    labels:[],
     msg: '',
     loading: false,
 };
@@ -172,6 +192,26 @@ const attributeSlice = createSlice({
             .addCase(fetchSize.rejected, (state, action) => {
                 state.loading = false;
                 state.sizes = [];
+                state.msg = 'Error occurred.'; // Error message from rejectWithValue
+            })
+
+            // label
+            .addCase(fetchLabel.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(fetchLabel.fulfilled, (state, action) => {
+                state.loading = false;
+                if (action.payload?.isSuccess) {
+                    state.labels = action.payload?.data?.content || [];
+                    state.msg = "Lấy thành công" ;
+                } else {
+                    state.labels = [];
+                    state.msg = 'Error occurred.';
+                }
+            })
+            .addCase(fetchLabel.rejected, (state, action) => {
+                state.loading = false;
+                state.labels = [];
                 state.msg = 'Error occurred.'; // Error message from rejectWithValue
             });
     },

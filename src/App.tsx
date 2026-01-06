@@ -11,7 +11,7 @@ import getCurrent from "./service/user/useCurrentUser.ts";
 import {setAuth} from "./store/auth-slice.ts";
 import {fetchUser, setAccount, setRole, setUser} from "./store/user-slice.ts";
 import {Loading} from "./components/ui";
-import {fetchCategory, fetchColor, fetchSeason, fetchSize} from "@/store/attribute-slice.ts";
+import {fetchCategory, fetchColor, fetchSeason, fetchSize, fetchLabel} from "@/store/attribute-slice.ts";
 import {ERole} from "./common/models/User.ts";
 import {path} from "./common/constants/path.ts";
 import {useNavigate} from "react-router-dom";
@@ -29,6 +29,7 @@ function App() {
         dispatch(fetchCategory())
         dispatch(fetchSeason())
         dispatch(fetchColor())
+        dispatch(fetchLabel())
     }, []);
     useEffect(() => {
         const timeOut = setTimeout(async () => {
