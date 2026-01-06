@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 // import { resetCart } from "../../../store/cart-slice";
 import { toast } from 'react-toastify';
 import { memo } from 'react';
-import DefaultAvatar from '../../../assets/images/default_avt.webp';
+import DefaultAvatar from '../../../assets/images/default_avt.avif';
 import { path } from '../../../common/constants/path.ts';
 import { IAccount } from '@/common/models/User.ts';
 import { setRole } from '@/store/user-slice.ts';

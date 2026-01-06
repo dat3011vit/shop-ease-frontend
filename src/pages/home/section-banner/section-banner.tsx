@@ -4,7 +4,11 @@ import Slider, { Settings } from 'react-slick';
 import React, { useRef } from 'react';
 import { HomeSlide } from '@/utils/datafake';
 import { Icon } from '@iconify/react/dist/iconify.js';
+import imgHome1 from '@/assets/images/img_home_1.webp';
+import imgHome2 from '@/assets/images/img_home_2.webp';
+import imgHome3 from '@/assets/images/img_home_3.webp';
 import './index.scss';
+
 
 export default function SectionBannerHotWord() {
     const slider = useRef<Slider>(null);
@@ -54,9 +58,7 @@ export default function SectionBannerHotWord() {
                                             <Icon icon={'iconamoon:search-light'} />
                                         </Button> */}
                                             <img
-                                                src={
-                                                    'https://cdn.venngage.com/template/thumbnail/small/01b644bd-e75b-4e70-b476-3a786261f066.webp'
-                                                }
+                                                src={imgHome3}
                                                 sizes="(max-width: 600px) 100vw, 800px"
                                                 alt={slide?.title}
                                                 loading="eager"
@@ -70,10 +72,10 @@ export default function SectionBannerHotWord() {
                     </div>
                     <div className="banner__hotword-item">
                         <div>
-                            <img src="https://d3jmn01ri1fzgl.cloudfront.net/photoadking/webp_thumbnail/shark-new-collection-sale-clothing-banner-template-p3ztild89dffd0.webp" alt="" />
+                            <img src={imgHome1} alt="" />
                         </div>
                         <div>
-                            <img src="https://design-assets.adobeprojectm.com/content/download/express/public/urn:aaid:sc:VA6C2:c80f1d06-fbb8-4ba3-9e15-210354514bd8/component?assetType=TEMPLATE&etag=cb97c727a2af01a82061c4e30deb50e1&revision=0&component_id=845b1f39-346e-407c-a795-96648d009da8" alt="" />
+                            <img src={imgHome2} alt="" />
                         </div>
                     </div>
                 </div>

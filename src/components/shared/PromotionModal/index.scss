@@ -169,7 +169,7 @@
     }
 
     .offer-icon {
-        font-size: 28px;
+        font-size: 32px;
         flex-shrink: 0;
         animation: bounce 2s ease-in-out infinite;
     }
@@ -215,6 +215,12 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
 
+    &:focus,
+    &:active {
+        outline: 2px solid #FF6B35;
+        outline-offset: 2px;
+    }
+
     &.primary {
         background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
         color: white;
@@ -223,6 +229,12 @@
         &:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 16px rgba(255, 107, 53, 0.5);
+        }
+
+        &:focus,
+        &:active {
+            outline: 2px solid #df5804;
+            outline-offset: 2px;
         }
     }
 
@@ -234,6 +246,12 @@
         &:hover {
             background: #fff5f0;
             transform: translateY(-2px);
+        }
+
+        &:focus,
+        &:active {
+            outline: 2px solid #FF6B35;
+            outline-offset: 2px;
         }
     }
 }
