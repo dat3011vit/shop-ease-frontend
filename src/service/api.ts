@@ -74,6 +74,18 @@ export const API = {
       headers: headers(useToken), // Truyền useToken vào đây
     });
   },
+
+  put: async <T>(
+    serverUrl: string,
+    path: string,
+    body?: { [key: string]: any },
+    useToken: boolean = true // Thêm tham số để điều chỉnh việc dùng token
+  ) => {
+    const _path = path[0] === "/" ? path.substring(1) : path;
+    return await axios.put<IApiResponse<T>>(serverUrl + "/" + _path, body, {
+      headers: headers(useToken), // Truyền useToken vào đây
+    });
+  },
 };
 
 // Hàm serialize params để thêm vào URL

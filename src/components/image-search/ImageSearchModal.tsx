@@ -40,7 +40,6 @@ const ImageSearchModal: React.FC<ImageSearchModalProps> = ({ visible, onClose })
                         setPreviewImage(e.target?.result as string);
                     };
                     reader.readAsDataURL(blob);
-
                     message.success('Đã dán ảnh thành công!');
                 }
                 break;

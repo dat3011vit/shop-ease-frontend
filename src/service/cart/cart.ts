@@ -51,11 +51,21 @@ const Cart={
             true,
         )
     },
-    delete: async(params:{page:number,size:number})=>{
-        return await API.get<IContent>(
+
+    delete: async(cartProductId: number)=>{
+        return await API.delete<IContent>(
             SERVER.product.url,
-            '/cart/getCart',
-            params,
+            `/cart/delete/${cartProductId}`,
+            undefined,
+            true,
+        )
+    },
+
+    updateQuantity: async(cartProductId: number, quantity: number)=>{
+        return await API.put<IContent>(
+            SERVER.product.url,
+            `/cart/update-quantity/${cartProductId}?quantity=${quantity}`,
+            undefined,
             true,
         )
     },

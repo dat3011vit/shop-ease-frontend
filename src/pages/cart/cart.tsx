@@ -37,16 +37,43 @@ const AdvancedCartPage = () => {
         fetch()
         setSelectAll(false); // Reset select all on page change
     }, [page]);
-    const updateQuantity = (key, newQuantity) => {
-        setCartItems((prevItems) =>
-            prevItems.map((item) =>
-                item.cart_product_id === key ? { ...item, quantity: newQuantity } : item
-            )
-        );
+    const updateQuantity = async (key, newQuantity) => {
+        if (newQuantity <= 0) {
+            toast.warning('Số lượng phải lớn hơn 0');
+            return;
+        }
+
+        try {
+            const response = await Cart.updateQuantity(key, newQuantity);
+            if (response?.data?.isSuccess) {
+                setCartItems((prevItems) =>
+                    prevItems.map((item) =>
+                        item.cart_product_id === key ? { ...item, quantity: newQuantity } : item
+                    )
+                );
+                toast.success('Đã cập nhật số lượng');
+            } else {
+                toast.error(response?.data?.message || 'Không thể cập nhật số lượng');
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error('Lỗi khi cập nhật số lượng');
+        }
     };
 
-    const removeItem = (key) => {
-        setCartItems((prevItems) => prevItems.filter((item) => item.cart_product_id !== key));
+    const removeItem = async (key) => {
+        try {
+            const response = await Cart.delete(key);
+            if (response?.data?.isSuccess) {
+                setCartItems((prevItems) => prevItems.filter((item) => item.cart_product_id !== key));
+                toast.success('Đã xóa sản phẩm khỏi giỏ hàng');
+            } else {
+                toast.error(response?.data?.message || 'Không thể xóa sản phẩm');
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error('Lỗi khi xóa sản phẩm');
+        }
     };
 
     const handleSelectAllChange = (checked) => {
