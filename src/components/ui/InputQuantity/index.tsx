@@ -1,4 +1,4 @@
-import { HTMLAttributes, memo } from "react";
+import { HTMLAttributes, memo, useState, useEffect } from "react";
 import "./index.scss";
 
 interface InputQuantityProps extends HTMLAttributes<HTMLInputElement> {
@@ -16,6 +16,14 @@ const InputQuantityComponent: React.FC<InputQuantityProps> = ({
     fullWidth,
     ...rest
 }) => {
+    // Local state để lưu giá trị đang nhập (cho phép rỗng tạm thời)
+    const [inputValue, setInputValue] = useState<string>(String(quantity));
+
+    // Sync với prop quantity khi nó thay đổi từ bên ngoài
+    useEffect(() => {
+        setInputValue(String(quantity));
+    }, [quantity]);
+
     const updateQuantityByIcon = (value: number) => {
         const newQuantity = Math.max(quantity + value, 1);
 
@@ -24,22 +32,50 @@ const InputQuantityComponent: React.FC<InputQuantityProps> = ({
         }
         if (newQuantity <= 0) {
             onChangeQuantity(1);
+            setInputValue("1");
             return;
         }
         onChangeQuantity(newQuantity);
+        setInputValue(String(newQuantity));
     };
 
     const entryQuantity = (value: string) => {
+        // Cho phép rỗng tạm thời khi user đang xóa để nhập số mới
+        if (value === "") {
+            setInputValue("");
+            return;
+        }
+
         const newValue = Number(value);
+
+        // Validate: phải là số hợp lệ
+        if (isNaN(newValue)) {
+            return;
+        }
+
+        // Validate: không vượt quá max
         if (max && newValue > max) {
+            setInputValue(String(max));
             onChangeQuantity(max);
             return;
         }
+
+        // Validate: phải > 0
+        if (newValue < 1) {
+            setInputValue(value); // Vẫn cho hiển thị giá trị user đang gõ
+            return;
+        }
+
+        // Giá trị hợp lệ
+        setInputValue(value);
         onChangeQuantity(newValue);
     };
+
     const handleBlur = (value: string) => {
-        if (value === "" || value === "0") {
+        // Khi blur: nếu rỗng hoặc không hợp lệ → reset về 1
+        if (value === "" || value === "0" || Number(value) < 1 || isNaN(Number(value))) {
             onChangeQuantity(1);
+            setInputValue("1");
         }
     };
 
@@ -73,7 +109,7 @@ const InputQuantityComponent: React.FC<InputQuantityProps> = ({
                 }
                 pattern="[0-9]*"
                 className="quantity__textfield"
-                value={quantity < 1 ? "" : quantity}
+                value={inputValue}
                 min="1"
                 max={max}
             />
