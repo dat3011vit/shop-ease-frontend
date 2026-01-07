@@ -99,6 +99,7 @@ const ProductDetail: React.FC = () => {
     const {id} = location?.state || {};
     const [product,setProduct]=useState<IProduct|null>(null);
     const [quantity, setQuantity] = useState(1);
+    const [inputValue, setInputValue] = useState("1"); // Local state cho input
     const [score, setScore] = useState(0);
     const [total, setTotal] = useState(0);
     const [activeButton, setActiveButton] = useState(0);
@@ -106,11 +107,16 @@ const ProductDetail: React.FC = () => {
     const [reviewData,setReviewData]=useState([])
     useEffect(() => {
         setMaxQuantity((prev)=> product?.csq?.[activeButton]?.quantity||0)
-        setQuantity((prevQuantity) =>
-            prevQuantity > (product?.csq?.[activeButton]?.quantity || 0)
-                ? (product?.csq?.[activeButton]?.quantity || 0)
-                : 1
-        );
+        const newQuantity = (() => {
+            const prevQty = quantity;
+            const maxQty = product?.csq?.[activeButton]?.quantity || 0;
+            if (prevQty > maxQty) {
+                return maxQty > 0 ? maxQty : 1;
+            }
+            return prevQty > 0 ? prevQty : 1;
+        })();
+        setQuantity(newQuantity);
+        setInputValue(String(newQuantity));
     }, [product?.csq?.[activeButton]?.quantity]);
     // useEffect(() => {
     //     setScore()
@@ -177,8 +183,49 @@ const ProductDetail: React.FC = () => {
     console.log("quan",{quantity})
     const handleQuantityChange = (value) => {
         // Chỉ cập nhật nếu giá trị hợp lệ và không vượt quá max
-        if (value <= maxQuantity) {
+        if (value <= maxQuantity && value >= 1) {
             setQuantity(value);
+            setInputValue(String(value));
+        }
+    };
+
+    const handleInputChange = (inputStr: string) => {
+        // Cho phép rỗng tạm thời khi user đang xóa để nhập số mới
+        if (inputStr === "") {
+            setInputValue("");
+            return;
+        }
+
+        const newValue = parseInt(inputStr);
+
+        // Validate: phải là số hợp lệ
+        if (isNaN(newValue)) {
+            return;
+        }
+
+        // Validate: không vượt quá max
+        if (newValue > maxQuantity) {
+            setInputValue(String(maxQuantity));
+            setQuantity(maxQuantity);
+            return;
+        }
+
+        // Validate: phải >= 1
+        if (newValue < 1) {
+            setInputValue(inputStr); // Vẫn cho hiển thị giá trị user đang gõ
+            return;
+        }
+
+        // Giá trị hợp lệ
+        setInputValue(inputStr);
+        setQuantity(newValue);
+    };
+
+    const handleBlur = () => {
+        // Khi blur: nếu rỗng hoặc không hợp lệ → reset về 1
+        if (inputValue === "" || inputValue === "0" || parseInt(inputValue) < 1 || isNaN(parseInt(inputValue))) {
+            setQuantity(1);
+            setInputValue("1");
         }
     };
     function jsonString(str) {
@@ -326,15 +373,25 @@ const ProductDetail: React.FC = () => {
                                     <Icon icon="solar:minus-circle-bold" />
                                 </button>
                                 <input
-                                    type="number"
+                                    type="tel"
                                     className="product-detail-modern__quantity-input"
-                                    value={quantity}
+                                    value={inputValue}
                                     min={1}
                                     max={maxQuantity}
-                                    onChange={(e) => {
-                                        const val = parseInt(e.target.value) || 1;
-                                        handleQuantityChange(Math.min(Math.max(val, 1), maxQuantity));
+                                    onKeyDown={(e) => {
+                                        // Chỉ cho phép số, Delete, Backspace, Arrow keys
+                                        if (
+                                            !/[0-9]/.test(e.key) &&
+                                            e.key !== "Delete" &&
+                                            e.key !== "Backspace" &&
+                                            e.key !== "ArrowRight" &&
+                                            e.key !== "ArrowLeft"
+                                        ) {
+                                            e.preventDefault();
+                                        }
                                     }}
+                                    onChange={(e) => handleInputChange(e.target.value)}
+                                    onBlur={handleBlur}
                                 />
                                 <button
                                     className="product-detail-modern__quantity-btn"
