@@ -348,6 +348,27 @@
         }
     }
 
+    &__quantity-display {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2rem;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: $gold-600;
+        background: linear-gradient(135deg, rgba($gold-100, 0.5) 0%, rgba($gold-200, 0.3) 100%);
+        border: 2px solid $gold-400;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba($gold-600, 0.1);
+        transition: all 0.3s ease;
+        min-width: 80px;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba($gold-600, 0.2);
+        }
+    }
+
     &__item-total {
         font-size: 2rem;
         font-weight: 800;

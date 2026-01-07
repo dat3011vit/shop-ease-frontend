@@ -43,6 +43,16 @@ const AdvancedCartPage = () => {
             return;
         }
 
+        // TẠM THỜI chỉ cập nhật UI local, chưa gọi API backend
+        // TODO: Bỏ comment khi đã implement backend API update-quantity
+        setCartItems((prevItems) =>
+            prevItems.map((item) =>
+                item.cart_product_id === key ? { ...item, quantity: newQuantity } : item
+            )
+        );
+
+        // Uncomment code này sau khi đã implement backend:
+        /*
         try {
             const response = await Cart.updateQuantity(key, newQuantity);
             if (response?.data?.isSuccess) {
@@ -59,6 +69,7 @@ const AdvancedCartPage = () => {
             console.error(error);
             toast.error('Lỗi khi cập nhật số lượng');
         }
+        */
     };
 
     const removeItem = async (key) => {
@@ -278,29 +289,9 @@ const AdvancedCartPage = () => {
                                             </div>
 
                                             <div className="cart-page-modern__item-quantity">
-                                                <button
-                                                    className="cart-page-modern__quantity-btn"
-                                                    onClick={() => updateQuantity(item.cart_product_id, Math.max(1, item.quantity - 1))}
-                                                    disabled={item.quantity <= 1}
-                                                >
-                                                    <Icon icon="solar:minus-circle-bold" width={20} height={20} style={{ display: 'inline-block', visibility: 'visible' }} />
-                                                </button>
-                                                <input
-                                                    type="number"
-                                                    className="cart-page-modern__quantity-input"
-                                                    value={item.quantity}
-                                                    min={1}
-                                                    onChange={(e) => {
-                                                        const val = parseInt(e.target.value) || 1;
-                                                        updateQuantity(item.cart_product_id, val);
-                                                    }}
-                                                />
-                                                <button
-                                                    className="cart-page-modern__quantity-btn"
-                                                    onClick={() => updateQuantity(item.cart_product_id, item.quantity + 1)}
-                                                >
-                                                    <Icon icon="solar:add-circle-bold" width={20} height={20} style={{ display: 'inline-block', visibility: 'visible' }} />
-                                                </button>
+                                                <span className="cart-page-modern__quantity-display">
+                                                    x{item.quantity}
+                                                </span>
                                             </div>
 
                                             <div className="cart-page-modern__item-total">
