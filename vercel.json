@@ -1,0 +1,17 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "env": {
+    "VITE_USE_API_GATEWAY": "true",
+    "VITE_API_GATEWAY_URL": "https://undeformable-authentic-ike.ngrok-free.dev"
+  }
+}
